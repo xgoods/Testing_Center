@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <form id="thisForm" action="login.php" title="" method="post">
+        <div>
+	  <h1>LOGIN</h2>
+            <label class="title">Username</label>
+            <input type="text" id="user" name="user" >
+        </div>
+        <div>
+            <label class="title">Password</label>
+            <input type="text" id="pass" name="pass" >
+        </div>
+        <div>
+            <input type="submit" id="submitButton"  name="submitButton" value="Submit">
+        </div>
+    </form>
+<script type='text/javascript'>
+    $("#thisForm").submit(function(event) {
+    event.preventDefault();
+    var $form = $( this ),
+    url = $form.attr( 'action' );
+    var posting = $.post( url, { username: $('#user').val(), password: $('pass').val() } );
+    posting.done(function( data ) {
+        alert('success');
+      });
+    });
+</script>
+
+</body>
+</html> 
