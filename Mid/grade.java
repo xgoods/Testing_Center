@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List; 
 import java.util.ArrayList;
 
-
 class grade{
 
    public static void main(String[] args) throws IOException{ 
@@ -26,9 +25,7 @@ class grade{
           }   
           
          //store rules into an array
-         List<String> rulearray = new ArrayList<>();
-         Path rulePath = Paths.get("");
-         String r = rulePath.toAbsolutePath().toString();   
+         List<String> rulearray = new ArrayList<>();  
       
          try{
              for (String rline : Files.readAllLines(Paths.get(s+"\\rules.txt"))) {
