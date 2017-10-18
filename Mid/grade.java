@@ -60,19 +60,13 @@ class grade{
      public static int grade(String x, String text){
      int count = 0;
      
-     if(text.contains(x)){
-            
-               //donothing
-            
-            } else{
-            
+     if(text.contains(x)){        
+               //do nothing        
+            } else{       
                 count = count + 3;
-                System.out.println("did not properly implement '" + x + "' within the code");
-            
-            }
-           
-           return count;
-            
+                System.out.println("did not properly implement '" + x + "' within the code");            
+            }       
+           return count;         
           }  
 
 }
