@@ -9,7 +9,7 @@ class grade{
    public static void main(String[] args) throws IOException{ 
 
          String text = "", rules = "", ruletext;
-         int currgrade = 25, deduct = 0, rulecount = 5, i = 0;
+         int currgrade = 25, deduct = 0, i = 0;
       
          //get student code and store to variable 'text'
          Path filePath = Paths.get("");
@@ -44,7 +44,6 @@ class grade{
               deduct = grade(ruletext, text);
               currgrade = currgrade - deduct;
               deduct = 0;
-              rulecount--;
               i++; 
           }
           
