@@ -11,7 +11,7 @@ class grade{
 
    public static void main(String[] args) throws IOException{ 
 
-         String text = "", rules = "", ruletext;
+         String rules = "", ruletext;
          int currgrade = 25, deduct = 0, i = 0;
      
          //get student code and store to variable 'text'
