@@ -12,8 +12,8 @@ class grade{
          int currgrade = 25, deduct = 0, rulecount = 5, i = 0;
       
          //get student code and store to variable 'text'
-         Path studentPath = Paths.get("");
-         String s = studentPath.toAbsolutePath().toString();   
+         Path filePath = Paths.get("");
+         String s = filePath.toAbsolutePath().toString();   
          FileReader file = new FileReader(s+"\\tograde.txt");
          BufferedReader reader = new BufferedReader(file);
   
