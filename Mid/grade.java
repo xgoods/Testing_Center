@@ -53,7 +53,7 @@ class grade{
      public static int grade(String x, String text){
      int count = 0;
      
-     if(x.contains(text)){        
+     if(text.contains(x)){        
                //do nothing        
             } else{       
                 count = count + 3;            
