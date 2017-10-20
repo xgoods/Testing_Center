@@ -1,33 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title>Login</title>
+<h1>Login</h1>
 </head>
 <body>
-    <form id="thisForm" action="login.php" title="" method="post">
-        <div>
-	  <h1>LOGIN</h2>
-            <label class="title">Username</label>
-            <input type="text" id="user" name="user" >
-        </div>
-        <div>
-            <label class="title">Password</label>
-            <input type="text" id="pass" name="pass" >
-        </div>
-        <div>
-            <input type="submit" id="submitButton"  name="submitButton" value="Submit">
-        </div>
-    </form>
-<script type='text/javascript'>
-    $("#thisForm").submit(function(event) {
-    event.preventDefault();
-    var $form = $( this ),
-    url = $form.attr( 'action' );
-    var posting = $.post( url, { username: $('#user').val(), password: $('pass').val() } );
-    posting.done(function( data ) {
-        alert('success');
-      });
-    });
-</script>
-
+	<div>
+    	<p>
+    	<label class="title">Username:</label>
+        <input type="text" id="user" name="user">
+		</p>
+		<p>
+        <label class="title">Password:</label>
+        <input type="password" id="pass" name="pass">
+		</p>
+	  <input type="submit" id="submitButton" onclick="getLogin()" name="submitButton" value="Submit">
+    </div>
 </body>
-</html> 
+</html>
+
