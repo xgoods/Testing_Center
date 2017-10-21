@@ -12,6 +12,7 @@
     $dbexec = curl_exec($db); 
     curl_close($db);
     
+    //execute java grader
     $grade = exec("java grade '$studentCode' '$dbexec'");
     
     //send to backend
