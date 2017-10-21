@@ -1,24 +1,26 @@
 import java.io.*;
-import java.nio.file.*;
+/*import java.nio.file.*;
 import java.io.File;
 import java.util.List; 
-import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.ArrayList;*/
+
 
 class grade{
 
    public static void main(String[] args) throws IOException{ 
 
-         String text = "", rules = "", ruletext;
-         int currgrade = 25, deduct = 0, i = 0;
+         String text = "", rules = "", ruletext, temp;
+         int currgrade = 0, points = 0, i = 0;
      
-         //get student code and store to variable 'text'
+         //get student code and store to variable 'text
          text = args[0];  
           
          //store rules into an array
-         List<String> rulearray = new ArrayList<>();  
+         temp = args[1];
+         temp = temp.substring(1,temp.length()-1); 
+         String[] rulearray = temp.split(",");
+         
+         /*List<String> rulearray = new ArrayList<>();  
          Path filePath = Paths.get("");
          String s = filePath.toAbsolutePath().toString();   
          try{
@@ -30,20 +32,20 @@ class grade{
          }
          catch(Exception e){
               System.out.println("error");
-         } 
+         }*/ 
          
          //grading
-         while (i < rulearray.size()){
-              ruletext = rulearray.get(i);
-              deduct = grade(ruletext, text);
-              currgrade = currgrade - deduct;
-              deduct = 0;
+         while (i < rulearray.length){
+              ruletext = rulearray[i];
+              points = grade(ruletext, text);
+              currgrade = currgrade + points;
+              points = 0;
               i++; 
           } 
           
           //deduct 25 points max per question
-          if(currgrade < 0){
-              currgrade = 0;
+          if(currgrade > 25){
+              currgrade = 25;
           }
         
           System.out.println(currgrade);  
@@ -54,9 +56,9 @@ class grade{
      int count = 0;
      
      if(text.contains(x)){        
-               //do nothing        
+                count = count + 25;      
             } else{       
-                count = count + 3;            
+                //do nothing            
             }       
            return count;         
           }  
