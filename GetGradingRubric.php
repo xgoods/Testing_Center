@@ -1,7 +1,7 @@
 <?php
 class GetGradingRubric {
 	public function post($data,$db) {
-		$qid = $data['qid'];
+/*		$qid = $data['qid'];
 		$ques = mysqli_query($db,"SELECT * FROM Bank WHERE qid = '$qid'");
 		$question = mysqli_fetch_array($result);
 		if ($question = NULL) {
@@ -19,6 +19,10 @@ class GetGradingRubric {
 	  "status" => 1
           "fname" => $fname))); 
    }
+*/
+   $ques = mysqli_query($db,"SELECT fname FROM Bank;");
+   $question = mysqli_fetch_array($result);
+   echo ($question);
 }
 }
 ?>
