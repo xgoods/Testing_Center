@@ -17,8 +17,8 @@ class GetGradingRubric {
       $arg3 = $row['arg3'];
       die(json_encode(array(
 	  "status" => 1
-          "fname" => $fname)));
+          "fname" => $fname))); 
    }
-	}
+}
 }
 ?>
