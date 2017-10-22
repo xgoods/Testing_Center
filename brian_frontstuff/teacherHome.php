@@ -14,7 +14,7 @@
                 <input type="button" value="Create Exam" onclick="location.href='selectQuestions.php'">
             </p>
         </form>
-        <form name="releaseGrade" method="post" action="frontRelease.php">
+        <form name="releaseGrade" method="post" action="releaseGrade.php">
             <p>
                 <input type="button" value="Release Grades" onclick="location.href='releaseGrade.php'">
             </p>
