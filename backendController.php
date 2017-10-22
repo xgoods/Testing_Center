@@ -13,7 +13,7 @@ require 'GetExam.php';
 require 'GetGrades.php';
 require 'SetStudentAnswers.php';
 require 'SetStudentGrade.php';
-require 'GetStudentAnswer.php';
+require 'GetGradingRubric.php';
 require 'ReleaseExams.php';
 $data = json_decode(file_get_contents('php://input'),true);
 $action;
@@ -66,8 +66,8 @@ switch ($data['cmd']) {
 		$action = new SetStudentGrade;
 		$action->post($data,$db);
 		break;
-	case "getStudentAnswer":
-		$action = new GetStudentAnswer;
+	case "getGradingRubric":
+		$action = new GetGradingRubric;
 		$action->post($db);
 		break;
     	case "release":
