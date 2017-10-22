@@ -58,7 +58,7 @@ switch ($data['cmd']) {
 		$action = new GetGrades;
 		$action->post($data,$db);
 		break;
-	case "answered":
+	case "setStudentAnswers":
 		$action = new SetStudentAnswers;
 		$action->post($data,$db);
 		break;
