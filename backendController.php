@@ -34,11 +34,11 @@ switch ($data['cmd']) {
 		$action = new Login;
 		$action->post($data,$db);
 		break;
-	case "createquestion":
+	case "createQuestion":
 		$action = new CreateQuestion;
 		$action->post($data['data'],$db);
 		break;
-	case "bank":
+	case "getBank":
 		$action = new GetBank;
 		$action->post($db, $data['data']);
 		break;
@@ -46,7 +46,7 @@ switch ($data['cmd']) {
 		$action = new CreateExam;
 		$action->post($data['data'],$db);
 		break;
-	case "exams":
+	case "listExams":
 		$action = new ListExams;
 		$action->post($data,$db);
 		break;
@@ -70,7 +70,7 @@ switch ($data['cmd']) {
 		$action = new GetStudentAnswer;
 		$action->post($db);
 		break;
-    case "release":
+    	case "release":
 		$action = new ReleaseExams;
 		$action->post($db, $data['data']);
 		break;
