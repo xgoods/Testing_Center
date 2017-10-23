@@ -1,8 +1,8 @@
+//connects to brians 'releaseGrade.php'
 <?php
     
     $contents = file_get_contents('php://input');
     
-    //database curl
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetExam.php");
     curl_setopt($db, CURLOPT_POST, 1);
