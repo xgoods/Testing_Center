@@ -1,4 +1,4 @@
-//connects to brians 'addQuestionSend.php'
+//connects to fronts 'addQuestionSend.php'
 <?php
     
     $contents = file_get_contents('php://input');
