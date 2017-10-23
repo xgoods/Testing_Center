@@ -1,17 +1,27 @@
 <?php
-class CreateQuestion {
-	public function post($data,$db) {
+//class CreateQuestion {
+//	public function post($data,$db) {
+$db=mysqli_connect("sql2.njit.edu","ad379","admin","ad379");
+if (mysqli_connect_errno()) {
+	http_response_code(500);
+	die(json_encode(array(
+		"status" => -1,
+		"message" => mysqli_connect_error())));
+}
+
+
+
 		$qid = mysqli_query($db, "SELECT COUNT(*) FROM Bank;");
 		$qid = mysqli_fetch_array($qid);
-		$question = mysqli_real_escape_string($db,$data['question']);
-		$type = mysqli_real_escape_string($db,$data['type']);
+		$question = $_POST['question'];
+		$type = "open";
 		$newqid = $qid[0];
-		$fname = mysqli_real_escape_string($db,$data['fname']);
-		$arg1 = mysqli_real_escape_string($db,$data['arg1']);
-		$arg2 = mysqli_real_escape_string($db,$data['arg2']);
-		$arg3 = mysqli_real_escape_string($db,$data['arg3']);
-    $answer = mysqli_real_escape_string($db,$data['answer']);
-    $answer = mysqli_real_escape_string($db,$data['ranswer']);
+		$fname = $_POST['fname'];
+		$arg1 = $_POST['arg1'];
+		$arg2 = $_POST['arg2'];
+		$arg3 = $_POST['arg3'];
+    $answer = $_POST['answer'];
+    $ranswer = $_POST['ranswer'];
 
 		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$arg1','$arg2','$arg3','answer','ranswer');");
 		if (!$result) {
@@ -23,9 +33,10 @@ class CreateQuestion {
 			$message = "Question successfully created";
 		}
 		mysqli_close($db);
-		die(json_encode(array(
+		$je = (json_encode(array(
 			"status" => $status,
 			"message" => $message)));
-	}
-}
+    echo $je;
+//	}
+//}
 ?>
