@@ -1,4 +1,4 @@
-//connects to brians 'sendReleaseGrade.php'
+//connects to fronts 'sendReleaseGrade.php'
 <?php
     
     $contents = file_get_contents('php://input');
