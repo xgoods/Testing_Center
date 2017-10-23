@@ -11,9 +11,9 @@
         exit();
     }
       
-    $post = 'functionName='.$functionName.'&args='.$args."&returns=".$return.'&question='.$question.;
+    $post = 'functionName='.$functionName.'&args='.$args."&returns=".$return.'&question='.$question;
       
-	$url='kevins mid for this';
+	$url='https://web.njit.edu/~kl297/mid_addQuestion.php';
 	$ch = curl_init();
  	curl_setopt($ch, CURLOPT_URL, $url);
  	curl_setopt($ch, CURLOPT_POST, 1);
@@ -24,5 +24,9 @@
   	
   	//echo $questionSend
   	echo "Your question has been added.";
-
+  	
+  	echo "<form name='backaddQuestion' action='addQuestion.php'>
+            <input type='submit' name='submit' id='submit' value='Add another question'>
+          </form>";
+	//header("Location:https://web.njit.edu/~bg245/addQuestion.php");
 ?>
