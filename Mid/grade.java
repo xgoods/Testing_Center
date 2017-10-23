@@ -1,9 +1,4 @@
 import java.io.*;
-/*import java.nio.file.*;
-import java.io.File;
-import java.util.List; 
-import java.util.ArrayList;*/
-
 
 class grade{
 
@@ -16,23 +11,7 @@ class grade{
          text = args[0];  
           
          //store rules into an array
-         temp = args[1];
-         temp = temp.substring(1,temp.length()-1); 
-         String[] rulearray = temp.split(",");
-         
-         /*List<String> rulearray = new ArrayList<>();  
-         Path filePath = Paths.get("");
-         String s = filePath.toAbsolutePath().toString();   
-         try{
-             for (String rline : Files.readAllLines(Paths.get(s+"/rules.txt"))) {
-                 for (String part : rline.split("\\r?\\n")) {
-                    rulearray.add(part);
-              }
-            }
-         }
-         catch(Exception e){
-              System.out.println("error");
-         }*/ 
+         String[] rulearray = {args[1],args[2],args[3],args[4]};
          
          //grading
          while (i < rulearray.length){
