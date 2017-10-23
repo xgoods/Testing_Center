@@ -1,7 +1,16 @@
 <?php
-class GetGradingRubric {
-	public function post($data,$db) {
-/*		$qid = $data['qid'];
+//class GetGradingRubric {
+//	public function post($db) {
+$qid = $_POST["qid"];
+
+$db=mysqli_connect("sql2.njit.edu","ad379","admin","ad379");
+if (mysqli_connect_errno()) {
+	http_response_code(500);
+	die(json_encode(array(
+		"status" => -1,
+		"message" => mysqli_connect_error())));
+}
+
 		$ques = mysqli_query($db,"SELECT * FROM Bank WHERE qid = '$qid'");
 		$question = mysqli_fetch_array($result);
 		if ($question = NULL) {
@@ -12,17 +21,12 @@ class GetGradingRubric {
 			$result = mysqli_query($db,"SELECT fname FROM Bank WHERE qid = '$qid';");
       $row = mysqli_fetch_array($result);
       $fname = $row['fname'];
-      $arg1 = $row['arg1'];
-      $arg2 = $row['arg2'];
-      $arg3 = $row['arg3'];
-      die(json_encode(array(
-	  "status" => 1
-          "fname" => $fname))); 
-   }
-*/
-   $ques = mysqli_query($db,"SELECT fname FROM Bank;");
-   $question = mysqli_fetch_array($result);
-   echo ($question);
-}
-}
-?>
+      echo $fname;
+//      $arg1 = $row['arg1'];
+//      $arg2 = $row['arg2'];
+//      $arg3 = $row['arg3'];
+		$je =(json_encode(array(
+			"status" => 1,
+      'fname' => $fname)));
+   echo $je;
+   } 
