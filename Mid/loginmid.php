@@ -11,6 +11,4 @@
     $dbexec = curl_exec($db); 
     curl_close($db); 
 
-    echo $dbexec;
-
 ?>
