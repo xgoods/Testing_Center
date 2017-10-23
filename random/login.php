@@ -7,24 +7,33 @@ if (isset($_POST['submitButton'])){
     curl_setopt($mid, CURLOPT_URL, "https://web.njit.edu/~kl297/loginmid.php");
     curl_setopt($mid, CURLOPT_POST, 1);
     curl_setopt($mid, CURLOPT_POSTFIELDS, $contents);   
-    curl_setopt($mid, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($mid, CURLOPT_RETURNTRANSFER, 1);
     $midexec = curl_exec($mid);
     curl_close($mid);
     
-    if($midexec[0] == 1){
+    //echo $midexec;
+    
+    $rules = json_decode($midexec);
+    $first = $rules->{'status'}; 
+    $second = $rules->{'role'};
+    
+    if($first == "1"){
     $_SESSION["user"] = $username;
-    $type_match = strcmp($midexec[1], "teacher");
+    $type_match = strcmp($second, "teacher");
     if(!$type_match){
-        header("Location:https://web.njit.edu/~kl297/teacherHome.html");
+        header("Location:https://web.njit.edu/~kl297/teacherHome.php");
         exit;
     }
     else{
-        header("Location:https://web.njit.edu/~kl297/studentHome.html");
+        header("Location:https://web.njit.edu/~kl297/studentHome.php");
         exit;
     }
   }
   else {
-    echo "The username and/or password is incorrect $midexec[0]."."<br>";
+    echo "<script language=\"JavaScript\">\n";
+         echo "alert('invalid username/password');\n";
+         echo "window.location='index.html'";
+         echo "</script>";
   }
 }
 else
