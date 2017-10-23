@@ -16,12 +16,12 @@ if (mysqli_connect_errno()) {
 		$question = $_POST['question'];
 		$type = "open";
 		$newqid = $qid[0];
-		$fname = $_POST['fname'];
-		$arg1 = $_POST['arg1'];
-		$arg2 = $_POST['arg2'];
-		$arg3 = $_POST['arg3'];
+		$fname = $_POST['functionName'];
+		$arg1 = $_POST['args1'];
+		$arg2 = $_POST['args2'];
+		$arg3 = $_POST['args3'];
     $answer = $_POST['answer'];
-    $ranswer = $_POST['ranswer'];
+    $ranswer = "place hold";//$_POST['ranswer'];
 
 		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$arg1','$arg2','$arg3','answer','ranswer');");
 		if (!$result) {
