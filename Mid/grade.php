@@ -28,3 +28,19 @@
     //echo "\n";
 
 ?>
+
+
+<?php
+
+$db = curl_init();
+curl_setopt($db, CURLOPT_URL, "testicurl.php");  
+curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
+$dbexec = curl_exec($db); 
+curl_close($db);
+
+echo $dbexec;
+//$obj = json_decode($json);
+//echo $obj->{'a'}; // 12345
+echo "\n";
+
+?>
