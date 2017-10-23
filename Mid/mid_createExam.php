@@ -1,4 +1,4 @@
-//connects to brians 'selectQuestions.php'
+//connects to fronts 'selectQuestions.php'
 <?php
     
     $contents = file_get_contents('php://input');
