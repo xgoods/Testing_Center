@@ -1,4 +1,4 @@
-//connects to brians 'login.php'
+//connects to fronts 'login.php'
 <?php
     
     $contents = file_get_contents('php://input');
