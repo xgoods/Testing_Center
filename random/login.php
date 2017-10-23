@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST['submitButton'])){
     session_start();
     $contents = file_get_contents('php://input');
@@ -21,11 +22,11 @@ if (isset($_POST['submitButton'])){
     $_SESSION["user"] = $username;
     $type_match = strcmp($second, "teacher");
     if(!$type_match){
-        header("Location:https://web.njit.edu/~kl297/teacherHome.php");
+        header("Location:https://web.njit.edu/~bg245/teacherHome.php");
         exit;
     }
     else{
-        header("Location:https://web.njit.edu/~kl297/studentHome.php");
+        header("Location:https://web.njit.edu/~bg245/studentHome.php");
         exit;
     }
   }
