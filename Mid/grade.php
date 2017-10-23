@@ -1,6 +1,5 @@
 <?php
     
-    $studentCode = $_POST['studentinput]';
     $contents = file_get_contents('php://input');
     
     //get array of rules from db
