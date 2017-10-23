@@ -18,10 +18,10 @@ if (mysqli_connect_errno()) {
 				"status" => -1,
 				"message" => mysqli_error($db))));
 		}
-		unset($data['name']);
-        $weight = $data['qid'];
-		foreach($data as $key => $value) {
-			$result = mysqli_query($db, "INSERT INTO QAA VALUES('$neweid','$key', '$value');");
+		foreach($_POST['question']) {
+      $question = $POST['question'];
+      $qid = mysqli_query($db, "SELECT qid FROM BANK WHERE question = $question;");
+			$result = mysqli_query($db, "INSERT INTO QAA VALUES('$neweid','$qid');");
 			if (!$result) {
 				die(json_encode(array(
 					"status" => -1,
