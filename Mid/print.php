@@ -180,7 +180,7 @@ import java.io.*;
 
 class grade{
 
-   public static void main(String[] args) throws IOException{ 
+   public static void main(String[] args){ 
 
          String text = "", rules = "", ruletext, temp;
          int currgrade = 0, points = 0, i = 0;
