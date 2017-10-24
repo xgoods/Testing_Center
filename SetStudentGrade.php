@@ -16,4 +16,4 @@ if (mysqli_connect_errno()) {
 			"status" => 1)));
 //	}
 //}
-?>
+?> 
