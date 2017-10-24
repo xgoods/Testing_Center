@@ -13,10 +13,10 @@ if (mysqli_connect_errno()) {
 		$neweid = $eid[0];
 		$name = $_POST['examName'];
 		$result = mysqli_query($db, "INSERT INTO Exams(eid, name) VALUES('$neweid','$name');");
-    $questionarr = $_POST['question'];
+    $questionarr = $_POST['questions'];
 		foreach($questionarr as $question) {
-      $qid = mysqli_query($db, "SELECT qid FROM BANK WHERE question = $question;");
-			$result = mysqli_query($db, "INSERT INTO QAA VALUES('$neweid','$qid');");
+//      $qid = mysqli_query($db, "SELECT qid FROM BANK WHERE question = $question;");
+			$result = mysqli_query($db, "INSERT INTO QAA VALUES('$neweid','$question');");
 			if (!$result) {
 				die(json_encode(array(
 					"status" => -1,
