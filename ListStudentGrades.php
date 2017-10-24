@@ -9,21 +9,24 @@ if (mysqli_connect_errno()) {
 		"message" => mysqli_connect_error())));
 }
       $uid = $_POST['uid'];
+      $eid = $_POST['eid'];
+      $a = mysqli_query($db,"SELECT grade FROM Grades WHERE (Grades.release='r' AND eid=$eid);");
+      $exams = mysqli_fetch_array($a);
+      if ($exams) {
+            $result = mysqli_query($db,"SELECT grade FROM Grades WHERE (uid='$uid' AND eid='$eid');");
             $return = array();
-            while ($row = mysqli_fetch_array($result)) {
-                if ($row['grade'] == null) {
-                    $uid = $row['uid'];
-                    $insert = mysqli_query($db,
-                        "INSERT INTO Grades(uid, eid, grade) VALUES( ('$uid'), $eid, 0);");
-                    $return[$row['uid']] = array($row['uid'] => $row);
-                }
-                else {
-                    $return[$row['uid']] = array($row['uid'] => $row);
-                }
+            while ($row = mysqli_fetch_assoc($result)) {
+                $return[] = $row['grade'];
             }
-            $return['status'] = 1;
             mysqli_close($db);
-            die(json_encode($return));
+            $je = (json_encode($return));
+            echo $je;
+      } else {
+            $result['status'] = 0;
+            mysqli_close($db);
+            $je = (json_encode($result));
+            echo $je;        
+     }
 //        }
 //    }
 ?>
