@@ -48,8 +48,6 @@
     echo "</form>";
    	$finalArray = implode(' ',$an);  
     
-    
-    
     $grade = 0;
     //assign student input to array
     $temparr = explode(" ", $finalArray);
