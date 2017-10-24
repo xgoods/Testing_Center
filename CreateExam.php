@@ -15,13 +15,11 @@ if (mysqli_connect_errno()) {
 		$name = $_POST['examName'];
 		$result = mysqli_query($db, "INSERT INTO Exams(eid, name) VALUES('$neweid','$name');");
     $questionarr = explode(" ",$_POST['questions']);
-
     for ($i = 0; $i < 4; $i++) {
 //      $qid = mysqli_query($db, "SELECT qid FROM BANK WHERE question = $question;");
       $qid = $questionarr[$i];
 			$result = mysqli_query($db, "INSERT INTO QAA(eid, qid) VALUES('$neweid','$qid');");
     }
-
 		die(json_encode(array(
 			"status" => 1,
 			"message" => "Exam successfully created")));
