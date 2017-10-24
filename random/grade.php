@@ -46,8 +46,8 @@
    	$an = array_merge($examArray, $_POST['count']);
     
     echo "</form>";
-   	//$finalArray = implode(' ',$an);  */
-    $finalArray = "student1 0 test1 x x x";
+   	$finalArray = implode(' ',$an);  
+    
     
     
     $grade = 0;
@@ -57,7 +57,7 @@
     
     //get array of rules from db
     $db = curl_init();
-    curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");  
+    curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/mid_GetGradingRubric.php");  
     curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
     $dbexec = curl_exec($db); 
     curl_close($db);
