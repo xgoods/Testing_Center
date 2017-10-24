@@ -1,6 +1,11 @@
 <?php
     
-    $studentCode = $_POST["studentcode"];
+    $grade = 0;
+    $inputone = $_POST["studentcode"];
+    $inputtwo = $_POST["studentcode"];
+    $inputthree = $_POST["studentcode"];
+    $inputfour = $_POST["studentcode"];
+    $arr = array($inputone,$inputtwo,$inputthree,$inputfour);
     $contents = file_get_contents('php://input');
     
     //get array of rules from db
@@ -15,9 +20,15 @@
     $second = $rules->{'1'};
     $third = $rules->{'2'};
     $fourth = $rules->{'3'};
+
     
-    //execute java grader
-    $grade = exec("java grade '$studentCode' '$first' '$second' '$third' '$fourth'");
+
+    while (list($key, $studentCode) = each($arr)) {
+        //execute java grader
+        $temp = exec("java grade '$studentCode' '$first' '$second' '$third' '$fourth'");
+        $grade = $grade + $temp;
+
+    }
     
     //send to backend
     $ch = curl_init();
@@ -28,7 +39,6 @@
     $gradecurl = curl_exec($ch); 
     curl_close($ch);
     
-    echo $grade;
-    echo "\n";
+    //echo "$grade\n";
 
 ?>
