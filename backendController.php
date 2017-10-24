@@ -79,4 +79,4 @@ http_response_code(501);
 mysqli_close($db);
 die(json_encode(array(
 	"message" => "invalid command or not yet implemented")));
-?>
+?> 
