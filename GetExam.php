@@ -9,10 +9,11 @@ if (mysqli_connect_errno()) {
 		"message" => mysqli_connect_error())));
 }
     
-		$eid = $_POST['eid'];
+		$eid = $_POST['examSelect'];
+//    $eid = $eida[0];
 		$return = array();
-		$exams = mysqli_query($db, "SELECT Bank.question FROM ((SELECT * FROM QAA WHERE (QAA.eid=$eid)) AS T1) INNER JOIN (Bank) ON (Bank.qid = T1.qid);");
-		if (!$exams) {
+		$exams = mysqli_query($db, "SELECT Bank.question FROM ((SELECT * FROM QAA WHERE (QAA.eid='$eid')) AS T1) INNER JOIN (Bank) ON (Bank.qid = T1.qid);");
+    if (!$exams) {
 			die(json_encode(array(
 				"status" => -1,
 				"message" => mysqli_error($db))));
