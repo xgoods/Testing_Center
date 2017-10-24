@@ -9,7 +9,7 @@ if (mysqli_connect_errno()) {
 		"message" => mysqli_connect_error())));
 }
       $eid = $_POST['eid'];
-			$release = mysqli_query($db,"UPDATE Grades SET release = 'r' WHERE eid = $eid;");
+			$release = mysqli_query($db,"UPDATE Grades SET Grades.release = 'r' WHERE eid = $eid;");
 			if (!$release) {
                 mysqli_close($db);
                 die(json_encode(array(
