@@ -27,7 +27,6 @@
         //execute java grader
         $temp = exec("java grade '$studentCode' '$first' '$second' '$third' '$fourth'");
         $grade = $grade + $temp;
-
     }
     
     //send to backend
