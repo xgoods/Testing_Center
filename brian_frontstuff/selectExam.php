@@ -1,6 +1,6 @@
 
 <?php
-/*
+
     session_start();
     if(isset($_SESSION['user'])){
     }
@@ -8,7 +8,7 @@
         header("Location:https://web.njit.edu/~bg245/");
         exit;
     }
-    */
+   
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +24,9 @@
 </html>
 
 <?php
+	
+	$userName = $_SESSION['user'];
+	
     $url = "https://web.njit.edu/~ad379/ListStudentExams.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -38,6 +41,7 @@
     	echo $value;
         echo "<input type='radio' name='examSelect' id='examSelect' value='$value'>".$exam."<br>";
     }
+    echo "<input type='radio' name='userName' value='$userName' checked hidden>";
     echo "<p>";
     echo "<input type='submit' name='submit' value='Submit'>";
     echo "</p>";
@@ -47,7 +51,7 @@
    	$value = $_POST['examSelect'];
     //}
     //$post = array('examNum'=>$value);
-    echo $value;
+    //echo $value;
     //$test = 2;
     $url = "https://web.njit.edu/~ad379/GetExam.php";
     $ch = curl_init();
@@ -60,6 +64,6 @@
   	//echo $getQuestions;
     $questionArray = json_decode($getQuestions, true);
     
-    print_r($questionArray);
+   //print_r($questionArray);
     
 ?>

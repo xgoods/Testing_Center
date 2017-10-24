@@ -1,12 +1,16 @@
 <?php
 if (isset($_POST['submitButton'])){
     session_start();
-    $contents = file_get_contents('php://input');
+    $username = $_POST["user"];
+    $password = $_POST["pass"];
     
+   
+    $post = 'user='.$username.'&pass='.$password;
+    echo $post;
     $mid = curl_init();
     curl_setopt($mid, CURLOPT_URL, "https://web.njit.edu/~kl297/loginmid.php");
     curl_setopt($mid, CURLOPT_POST, 1);
-    curl_setopt($mid, CURLOPT_POSTFIELDS, $contents);   
+    curl_setopt($mid, CURLOPT_POSTFIELDS, $post);   
     curl_setopt($mid, CURLOPT_RETURNTRANSFER, 1);
     $midexec = curl_exec($mid);
     curl_close($mid);
@@ -16,9 +20,9 @@ if (isset($_POST['submitButton'])){
     $rules = json_decode($midexec);
     $first = $rules->{'status'}; 
     $second = $rules->{'role'};
-    
-    if($first == "1"){
     $_SESSION["user"] = $username;
+    if($first == "1"){
+    //$_SESSION["user"] = $username;
     $type_match = strcmp($second, "teacher");
     if(!$type_match){
         header("Location:https://web.njit.edu/~bg245/teacherHome.php");
