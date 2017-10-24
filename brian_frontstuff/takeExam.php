@@ -51,11 +51,14 @@
    	
    	print_r($finalArray);
    	
-   	$url2 = "kevins mid for this";
+   	$url2 = "https://web.njit.edu/~kl297/grade.php";
    	$ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url2);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $finalArray);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "array=$finalArray");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_exec($ch);
+    $hello = curl_exec($ch);
+    curl_close($ch);
     
+    echo $hello;
+?>
