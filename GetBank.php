@@ -19,17 +19,16 @@ if (mysqli_connect_errno()) {
                 "status" => -1,
                 "message" => mysqli_connect_error())));
         }
-        $i = 1;
+        
         $return = array();
         while ($row = mysqli_fetch_assoc($result)) {
-//            $return[$row['qid']] = array($row['qid'] => $row);
-              $return[$i] = $row['question'];
-              $i = $i+1;
+//            $return[] = array($row['qid'] => $row['question']);
+            $return[] = $row['question'];
         }
 //        $return['status'] = 1;
         mysqli_close($db);
         $je = (json_encode($return));
         echo $je;
-    }
+//    }
 //}
 ?>
