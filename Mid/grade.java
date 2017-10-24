@@ -22,7 +22,7 @@ class grade{
               i++; 
           } 
           
-          //deduct 25 points max per question
+          //25 points max per question
           if(currgrade > 25){
               currgrade = 25;
           }
