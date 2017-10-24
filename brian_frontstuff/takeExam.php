@@ -49,7 +49,7 @@
     echo "</form>";
    	$finalArray = implode(' ',$an);
    	
-   	print_r($finalArray);
+   	//print_r($finalArray);
    	
    	$url2 = "https://web.njit.edu/~kl297/grade.php";
    	$ch = curl_init();

@@ -49,8 +49,8 @@
     
     $examName = $_POST['examName'];
 	$post = array('questions'=>$quests, 'examName'=>$examName);
-	//print_r($post); 
-	$url = "https://web.njit.edu/~kl297/mid_createExam.php";
+	print_r($post); 
+	$url = "https://web.njit.edu/~ad379/CreateExam.php";
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
