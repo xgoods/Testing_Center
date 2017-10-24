@@ -32,6 +32,6 @@ if (mysqli_connect_errno()) {
 			"status" => $status,
 			"message" => $message)));
     echo $je;
-//	}
+//	 }
 //}
 ?>
