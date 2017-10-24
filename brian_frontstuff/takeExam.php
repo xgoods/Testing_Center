@@ -51,6 +51,11 @@
    	
    	print_r($finalArray);
    	
-   	
-    //print_r($_post$examName;
+   	$url2 = "kevins mid for this";
+   	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url2);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $finalArray);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_exec($ch);
     
