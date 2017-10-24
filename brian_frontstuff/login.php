@@ -1,21 +1,25 @@
 <?php
-if(!empty($_POST['Username'] && $_POST['Password'])){
-    $username = $_POST["user"];
-    $password = $_POST["pass"];
+if (isset($_POST['submitButton'])){
+    session_start();
+    $contents = file_get_contents('php://input');
     
-    $creds = array('username'=>$username,'password'=>$password);
-    $url = "https://web.njit.edu/~kl297/loginmid.php";
     $mid = curl_init();
-    curl_setopt($mid, CURLOPT_URL, $url);
+    curl_setopt($mid, CURLOPT_URL, "https://web.njit.edu/~kl297/loginmid.php");
     curl_setopt($mid, CURLOPT_POST, 1);
-    curl_setopt($mid, CURLOPT_POSTFIELDS, $creds);   
-    curl_setopt($mid, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($mid, CURLOPT_POSTFIELDS, $contents);   
+    curl_setopt($mid, CURLOPT_RETURNTRANSFER, 1);
     $midexec = curl_exec($mid);
     curl_close($mid);
     
-    if($midexec[0] == 1){
+    //echo $midexec;
+    
+    $rules = json_decode($midexec);
+    $first = $rules->{'status'}; 
+    $second = $rules->{'role'};
+    
+    if($first == "1"){
     $_SESSION["user"] = $username;
-    $type_match = strcmp($midexec[1], "t");
+    $type_match = strcmp($second, "teacher");
     if(!$type_match){
         header("Location:https://web.njit.edu/~bg245/teacherHome.php");
         exit;
@@ -26,7 +30,10 @@ if(!empty($_POST['Username'] && $_POST['Password'])){
     }
   }
   else {
-    echo "The username and/or password is incorrect."."<br>";
+    echo "<script language=\"JavaScript\">\n";
+         echo "alert('invalid username/password');\n";
+         echo "window.location='index.html'";
+         echo "</script>";
   }
 }
 else

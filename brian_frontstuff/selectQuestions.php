@@ -7,7 +7,7 @@
 
 <?php
 	$post = "questionBank";
-	$url = 'https://web.njit.edu/~ad379/GetBank.php';
+	$url = 'https://web.njit.edu/~kl297/mid_selectQuestions.php';
 	
 	$ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -17,7 +17,7 @@
     $getQuestions = curl_exec($ch);
     curl_close($ch);
     $questionsArray = json_decode($getQuestions, true);
-	
+	//print_r($questionsArray);
 	$count = 1;
     echo "<form name='createExam' method='post' action='selectQuestions.php' value=></br>";
     echo "Enter the exam name: <input type='text' name='examName' value='$examName'><br>";
@@ -49,7 +49,7 @@
     
     $examName = $_POST['examName'];
 	$post = array('questions'=>$quests, 'examName'=>$examName);
-	print_r($post); 
+	//print_r($post); 
 	$url = "https://web.njit.edu/~kl297/mid_createExam.php";
 
     $ch = curl_init();

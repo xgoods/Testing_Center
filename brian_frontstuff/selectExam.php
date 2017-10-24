@@ -32,32 +32,33 @@
     curl_close($ch);
     $examArray = json_decode($examExec, true);
     
-    echo "<form name='examSelect' method='post' action='selectExam.php'>";
+    echo "<form name='examSelect' method='post' action='takeExam.php'>";
     foreach($examArray as $exam) {
     	$value = array_search($exam, $examArray);
-        echo "<input type='radio' name='examSelect' value='$value'>".$exam."<br>";
+    	echo $value;
+        echo "<input type='radio' name='examSelect' id='examSelect' value='$value'>".$exam."<br>";
     }
     echo "<p>";
     echo "<input type='submit' name='submit' value='Submit'>";
     echo "</p>";
     echo "</form>";
     
-    if (isset($_POST['examSelect'])) {
-    	$examNum = $_POST['examSelect'];
-    }
-    
-    //echo $examNum;
-    
+    //if (isset($_POST['examSelect'])) {
+   	$value = $_POST['examSelect'];
+    //}
+    //$post = array('examNum'=>$value);
+    echo $value;
+    //$test = 2;
     $url = "https://web.njit.edu/~ad379/GetExam.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $examNum);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $value);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-    $sendQuestions = curl_exec($ch);
+    $getQuestions = curl_exec($ch);
     curl_close($ch);
-  
-    $questionArray = json_decode($sendQuestions, true);
+  	//echo $getQuestions;
+    $questionArray = json_decode($getQuestions, true);
     
     print_r($questionArray);
     

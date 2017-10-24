@@ -1,4 +1,6 @@
+
 <?php
+/*
     session_start();
     if(isset($_SESSION['user'])){
     }
@@ -6,7 +8,9 @@
         header("Location:https://web.njit.edu/~bg245/login.html");
         exit;
     }
+*/
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +27,7 @@
 <?php
     $userName = $_SESSION['user'];
     $post = "username=".$userName;
-    $url = "kevins mid for this";
+    $url = "https://web.njit.edu/~kl297/mid_releaseGrade.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);

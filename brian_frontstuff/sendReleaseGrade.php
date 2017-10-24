@@ -1,6 +1,6 @@
 <?php
   $examName = $_POST['examName'];
-  $url = "kevins mid for this";
+  $url = "https://web.njit.edu/~kl297/mid_sendReleaseGrade.php";
   $post = "examName=".$examName;
   
   $ch = curl_init();
