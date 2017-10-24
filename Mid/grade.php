@@ -1,11 +1,7 @@
 <?php
     
     $grade = 0;
-    $inputone = $_POST["studentcode"];
-    $inputtwo = $_POST["studentcode"];
-    $inputthree = $_POST["studentcode"];
-    $inputfour = $_POST["studentcode"];
-    $arr = array($inputone,$inputtwo,$inputthree,$inputfour);
+    $arr = array($_POST["inputone"],$_POST["inputtwo"],$_POST["inputthree"],$_POST["inputfour"]);
     $contents = file_get_contents('php://input');
     
     //get array of rules from db
