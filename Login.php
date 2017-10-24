@@ -35,7 +35,7 @@ if (mysqli_connect_errno()) {
 			$status = 0;
 			$message = "not authorized";
 			$role = "";
-		}
+		} 
 		mysqli_close($db);
 		$json_encode = (json_encode(array(
 			'status' => $status,
