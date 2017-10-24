@@ -14,20 +14,17 @@ if (mysqli_connect_errno()) {
 		$neweid = $eid[0];
 		$name = $_POST['examName'];
 		$result = mysqli_query($db, "INSERT INTO Exams(eid, name) VALUES('$neweid','$name');");
-/*    $questionarr = explode(" ",$_CURL['questions']);
-		foreach($questionarr as $question) {
+    $questionarr = explode(" ",$_POST['questions']);
+
+    for ($i = 0; $i < 4; $i++) {
 //      $qid = mysqli_query($db, "SELECT qid FROM BANK WHERE question = $question;");
-			$result = mysqli_query($db, "INSERT INTO QAA VALUES('$neweid','$question');");
-			if (!$result) {
-				die(json_encode(array(
-					"status" => -1,
-					"message" => mysqli_error($db))));
-			}
-		}
-*/
-//		die(json_encode(array(
-//			"status" => 1,
-//			"message" => "Exam successfully created")));
+      $qid = $questionarr[$i];
+			$result = mysqli_query($db, "INSERT INTO QAA(eid, qid) VALUES('$neweid','$qid');");
+    }
+
+		die(json_encode(array(
+			"status" => 1,
+			"message" => "Exam successfully created")));
 //	}
 //}
 ?>
