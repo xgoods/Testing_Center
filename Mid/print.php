@@ -22,8 +22,10 @@
 <?php
     
     $grade = 0;
-    $arr = array($_POST['inputone'],$_POST['inputtwo'],$_POST['inputthree'],$_POST['inputfour']);
-    $contents = file_get_contents('php://input');
+    //assign student input to array
+    $data = $_POST['array'];
+    $temparr = explode(" ", $data);
+    $arr = array($temparr[2],$temparr[3],$temparr[4],$temparr[5]);
     
     //get array of rules from db
     $db = curl_init();
@@ -37,6 +39,7 @@
     $second = $rules->{'1'};
     $third = $rules->{'2'};
     $fourth = $rules->{'3'};
+
     
     while (list($key, $studentCode) = each($arr)) {
         //execute java grader
@@ -44,16 +47,17 @@
         $grade = $grade + $temp;
     }
     
+    
     //send to backend
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "$contents&grade=$grade");   
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "uid=$temparr[0]&eid=$temparr[1]&grade=$grade");   
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $gradecurl = curl_exec($ch); 
     curl_close($ch);
     
-    //echo "$grade\n";
+    //echo "$grade\n"; 
 ?>
 
 //mid_addQuestions.php --------------------------------------
