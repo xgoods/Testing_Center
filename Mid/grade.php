@@ -16,7 +16,7 @@
     $second = $rules->{'1'};
     $third = $rules->{'2'};
     $fourth = $rules->{'3'};
-
+    
     while (list($key, $studentCode) = each($arr)) {
         //execute java grader
         $temp = exec("java grade '$studentCode' '$first' '$second' '$third' '$fourth'");
@@ -25,7 +25,7 @@
     
     //send to backend
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "grade database");
+    curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, "grade=$grade");   
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -33,5 +33,4 @@
     curl_close($ch);
     
     //echo "$grade\n";
-
 ?>
