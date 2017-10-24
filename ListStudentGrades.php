@@ -8,8 +8,10 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-      $uid = $_POST['uid'];
-      $eid = $_POST['eid'];
+      $contents = file_get_contents('php://input');
+      $a = explode(" ",$contents);
+      $uid = $a[0];
+      $eid = $a[1];
       $a = mysqli_query($db,"SELECT grade FROM Grades WHERE (Grades.release='r' AND eid=$eid);");
       $exams = mysqli_fetch_array($a);
       if ($exams) {
