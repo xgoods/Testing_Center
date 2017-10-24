@@ -1,11 +1,10 @@
 <?php
-
   	$functionName = $_POST['functionName'];
     $args = $_POST['args'];
     $return = $_POST['return'];
     $answer = $_POST['answer'];
       
-    $question = "Write a function named " . $functionName . " that takes " . $args . " argument(s) and " . $return . " (ex.. 'returns the sum')";
+    $question = "Write a function named " . $functionName . " that takes " . $args . " argument(s) and " . $return;
       
     if($question == null || $answer == null){
         echo "Please enter all the inputs.";
