@@ -1,7 +1,6 @@
 <?php
     
     $grade = 0;
-    $contents = file_get_contents('php://input');
     //assign student input to array
     $data = $_POST['array'];
     $temparr = explode(" ", $data);
