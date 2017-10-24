@@ -10,10 +10,10 @@ if (mysqli_connect_errno()) {
 }
 		$eid = $_POST['eid'];
 		$uid = $_POST['uid'];
-   $grade = $_POST['grade'];
+    $grade = $_POST['grade'];
 		$result = mysqli_query($db,"INSERT INTO Grades(uid, eid, grade) VALUES ('$uid','$eid','$grade');");
 		die(json_encode(array(
 			"status" => 1)));
 //	}
 //}
-?> 
+?>
