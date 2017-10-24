@@ -21,8 +21,6 @@
     $third = $rules->{'2'};
     $fourth = $rules->{'3'};
 
-    
-
     while (list($key, $studentCode) = each($arr)) {
         //execute java grader
         $temp = exec("java grade '$studentCode' '$first' '$second' '$third' '$fourth'");
