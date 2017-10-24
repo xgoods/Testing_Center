@@ -185,7 +185,7 @@ class grade{
          String text = "", rules = "", ruletext, temp;
          int currgrade = 0, points = 0, i = 0;
      
-         //get student code and store to variable 'text
+         //get student code and store to variable 'text'
          text = args[0];  
           
          //store rules into an array
