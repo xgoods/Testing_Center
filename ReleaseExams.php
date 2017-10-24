@@ -8,7 +8,8 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-      $eid = $_POST['eid'];
+      $contents = file_get_contents('php://input');
+      $eid = $contents[0];//$_POST['examName'];
 			$release = mysqli_query($db,"UPDATE Grades SET Grades.release = 'r' WHERE eid = $eid;");
 			if (!$release) {
                 mysqli_close($db);
