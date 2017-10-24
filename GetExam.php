@@ -8,8 +8,8 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-    
-		$eid = $_POST['examSelect'];
+    $eid= file_get_contents('php://input');
+//		$eid = $_POST['examSelect'];
 //    $eid = $eida[0];
 		$return = array();
 		$exams = mysqli_query($db, "SELECT Bank.question FROM ((SELECT * FROM QAA WHERE (QAA.eid='$eid')) AS T1) INNER JOIN (Bank) ON (Bank.qid = T1.qid);");
@@ -22,8 +22,10 @@ if (mysqli_connect_errno()) {
 //            $return[] = array($row['qid'] => $row['question']);
             $return[] = $row['question'];
         }
-		$je = (json_encode($return));
+//		$return['status'] = 1;
+    mysqli_close($db);
+    $je = (json_encode($return));
     echo $je;
-//	 }
+//	}
 //}
 ?>
