@@ -6,6 +6,7 @@
     $temparr = explode(" ", $data);
     $arr = array($temparr[2],$temparr[3],$temparr[4],$temparr[5]);
     
+    
     //get array of rules from db
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");  
@@ -18,14 +19,13 @@
     $second = $rules->{'1'};
     $third = $rules->{'2'};
     $fourth = $rules->{'3'};
-
     
+    $studentCode = "test1";
     while (list($key, $studentCode) = each($arr)) {
         //execute java grader
         $temp = exec("java grade '$studentCode' '$first' '$second' '$third' '$fourth'");
         $grade = $grade + $temp;
     }
-    
     
     //send to backend
     $ch = curl_init();
@@ -36,5 +36,5 @@
     $gradecurl = curl_exec($ch); 
     curl_close($ch);
     
-    //echo "$grade\n"; 
+    echo "$grade\n"; 
 ?>
