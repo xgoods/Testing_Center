@@ -20,7 +20,7 @@
     $third = $rules->{'2'};
     $fourth = $rules->{'3'};
     
-    $studentCode = "test1";
+    exec("javac grade.java");
     while (list($key, $studentCode) = each($arr)) {
         //execute java grader
         $temp = exec("java grade '$studentCode' '$first' '$second' '$third' '$fourth'");
