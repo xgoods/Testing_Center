@@ -53,7 +53,7 @@
             $j = $x + 1;
             $temparray[$i] = str_replace("var$j",$arguments[$x],$temparray[$i]);
         }    
-            if(preg_match('/(\d+)(?:\s*)([\+\-\*\/])(?:\s*)(\d+)/', $tits, $matches) !== FALSE){
+            if(preg_match('/(\d+)(?:\s*)([\+\-\*\/])(?:\s*)(\d+)/', $temparray[$i], $matches) !== FALSE){
             $operator = $matches[2];
             switch($operator){
                 case '+':
