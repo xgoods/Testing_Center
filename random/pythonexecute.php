@@ -32,26 +32,28 @@
     echo "$grade\n";
     
 ?>
-//receive file code
-<?php
-    
-    $array = "blah";
+\
 
+<?php
+  
+    $arguments = array(1, 2, 3, 4);
+    $temparray = array("0", "0", "0", "0");
+    
+    $hey = 0;
     $db = curl_init();
-    curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/send.php");  
+    curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/test2.php");  
     curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
     $dbexec = curl_exec($db); 
     curl_close($db);
-
-    file_put_contents ('xample.php', $dbexec);
-    exec("php xample.php $array") 
+    
+    
+    for ($i = 0; $i < 4; $i++) {
+    $breast[$i] = $dbexec;
+            for ($x = 0; $x < 2; $x++) {
+            $j = $x + 1;
+            $temparray[$i] = str_replace("var$j",$arguments[$x],$temparray[$i]);
+        } 
+           echo "$temparray[$i]\n";
+    } 
 
 ?> 
-//send file
-<?php
-        
-    echo
-    
-    "";
-        
-?>
