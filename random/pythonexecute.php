@@ -32,7 +32,7 @@
     echo "$grade\n";
     
 ?>
-
+//receive file code
 <?php
     
     $array = "blah";
@@ -47,7 +47,7 @@
     exec("php xample.php $array") 
 
 ?> 
-
+//send file
 <?php
         
     echo
