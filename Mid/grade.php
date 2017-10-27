@@ -77,4 +77,5 @@
     curl_close($ch);*/
    
     echo "$grade\n";
+
 ?> 
