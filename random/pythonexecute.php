@@ -1,6 +1,5 @@
 <?php
     
-    //$data = $_POST['array'];
     $data = "student1,0,def test1(,c,def test3(,c";
     $temparr = explode(",", $data);
     $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
