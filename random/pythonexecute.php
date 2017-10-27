@@ -20,7 +20,7 @@
               $grade += 5;
           }    
       }
-           
+            
     /*$ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~kl297/grade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
