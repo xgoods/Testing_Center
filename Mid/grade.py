@@ -14,7 +14,7 @@ def grade(rules, student_text):
     count = 0
     
     if rules in student_text:
-      count = 25
+      count = 5
       return count
     else:
       count = 0
@@ -26,6 +26,9 @@ while(i < len(rulearray)):
     currgrade = currgrade + points
     points = 0
     i += 1
+ 
+if(currgrade > 5):
+    currgrade = 5
   
 print(currgrade)
   
