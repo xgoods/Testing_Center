@@ -8,7 +8,7 @@ class grade{
          int currgrade = 0, points = 0, i = 0;
      
          //get student code and store to variable 'text
-         text = args[0];  
+         text = args[0];   
           
          //store rules into an array
          String[] rulearray = {args[1],args[2],args[3],args[4]};
