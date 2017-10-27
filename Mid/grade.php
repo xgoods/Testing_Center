@@ -1,15 +1,18 @@
 <?php
     
-    $grade = 0;
     $i = 0; 
+    //$grade = $_POST['grade'];
+    $grade = 0;
     //assign student input to array
     //$data = $_POST['array'];
     $data = "student1,0,def test1(,c,def test3(,c";
     $temparr = explode(",", $data);
     $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
     
-    $sampleinput = 'print("5")';
+    //TEMPORARY VARIABLES
+    $sampleinput = 'print("3")';
     $samplemethod = 'def test1(1,2,3):';
+    $requiredoutput = 3;
     
     //get array of rules from db
     $db = curl_init();
@@ -42,7 +45,7 @@
         file_put_contents ('test.py', $sampleinput);
         if(`python test.py` == null){
             //do nothing
-        } else if(`python test.py` == 5){
+        } else if(`python test.py` == $requiredoutput){
             $grade += 10;
         }else{
             $grade += 5;
