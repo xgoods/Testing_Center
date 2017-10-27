@@ -48,7 +48,7 @@
     
     
     for ($i = 0; $i < 4; $i++) {
-    $breast[$i] = $dbexec;
+    $temparray[$i] = $dbexec;
             for ($x = 0; $x < 2; $x++) {
             $j = $x + 1;
             $temparray[$i] = str_replace("var$j",$arguments[$x],$temparray[$i]);
