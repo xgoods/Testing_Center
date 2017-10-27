@@ -4,8 +4,8 @@
     $i = 0; 
     //assign student input to array
     //$data = $_POST['array'];
-    $data = "student1 0 test1( c test3 c";
-    $temparr = explode(" ", $data);
+    $data = "student1,0,def test1(,c,def test3(,c";
+    $temparr = explode(",", $data);
     $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
     
     $sampleinput = 'print("5")';
@@ -19,15 +19,15 @@
     curl_close($db);
     //FIGURE OUT DEF
     $rules = json_decode($dbexec);
-    $first = "{$rules->{'0'}}(";
-    $second = "{$rules->{'1'}}(";
-    $third = "{$rules->{'2'}}(";
-    $fourth = "{$rules->{'3'}}(";
+    $first = "def {$rules->{'0'}}(";
+    $second = "def {$rules->{'1'}}(";
+    $third = "def {$rules->{'2'}}(";
+    $fourth = "def {$rules->{'3'}}(";
     $rulearray = array($first, $second, $third, $fourth);
 
     //ARGUMENT VARIABLES HERE
     
-    //check for correct function name - '5 points max per q'
+    //check for properly implemented func - '5 points max per q'
     while (list($key, $studentCode) = each($arr)) {
         if(strpos($studentCode, "$rulearray[$i]") === false){
             //do nothing
