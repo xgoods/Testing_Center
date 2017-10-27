@@ -35,6 +35,8 @@
 
 <?php
     
+    $array = "blah";
+
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/send.php");  
     curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
@@ -42,7 +44,7 @@
     curl_close($db);
 
     file_put_contents ('xample.php', $dbexec);
-    exec("php xample.php") 
+    exec("php xample.php $array") 
 
 ?> 
 
