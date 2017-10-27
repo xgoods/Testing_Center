@@ -32,7 +32,8 @@
     echo "$grade\n";
     
 ?>
-\
+
+//
 
 <?php
   
@@ -44,16 +45,33 @@
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/test2.php");  
     curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
     $dbexec = curl_exec($db); 
-    curl_close($db);
-    
+    curl_close($db); 
     
     for ($i = 0; $i < 4; $i++) {
     $temparray[$i] = $dbexec;
             for ($x = 0; $x < 2; $x++) {
             $j = $x + 1;
             $temparray[$i] = str_replace("var$j",$arguments[$x],$temparray[$i]);
-        } 
-           echo "$temparray[$i]\n";
+        }    
+            if(preg_match('/(\d+)(?:\s*)([\+\-\*\/])(?:\s*)(\d+)/', $tits, $matches) !== FALSE){
+            $operator = $matches[2];
+            switch($operator){
+                case '+':
+                    $p = $matches[1] + $matches[3];
+                    break;
+                case '-':
+                    $p = $matches[1] - $matches[3];
+                    break;
+                case '*':
+                    $p = $matches[1] * $matches[3];
+                    break;
+                case '/':
+                    $p = $matches[1] / $matches[3];
+                    break;
+            }
+            echo $p;
+            }
     } 
+
 
 ?> 
