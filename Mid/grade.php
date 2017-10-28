@@ -33,7 +33,7 @@
         $n = $i + 1;
         file_put_contents ('test.py', $sampleinput);//$studentCode
         
-        //***check for properly written func name - '5 points max per q'
+        //***check for properly written func name - '5 points'
         if(strpos($studentCode, "def $rulearray[$i](") === false){
             $one = "> (-5 points) Did not name the function '$rulearray[$i]' in answer #$n";
             array_push($errors, $one);
@@ -117,14 +117,14 @@
                     }
             }      
         if(`python test.py` == null){
-            $three = "> (-10 points) Unable to execute '$rulearray[$i]' in answer #$n";
+            $three = "> (-15 points) Unable to execute '$rulearray[$i]' in answer #$n";
             array_push($errors, $three);
         } else if(`python test.py` == $op){
-            $grade += 10;
+            $grade += 15;
         } else{
-            $four = "> (-5 points) Incorrect output in answer #$n";
+            $four = "> (-8 points) Incorrect output in answer #$n";
             array_push($errors, $four);
-            $grade += 5;
+            $grade += 7;
         } 
          //reset values
          $argues = array();
