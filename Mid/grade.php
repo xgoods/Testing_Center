@@ -35,7 +35,7 @@
         
         //***check for properly written func name - '5 points max per q'
         if(strpos($studentCode, "def $rulearray[$i](") === false){
-            $one = "- Did not name function '$rulearray[$i]' on question #$n. (-5 points)";
+            $one = "> (-5 points) Did not name the function '$rulearray[$i]' in answer #$n";
             array_push($errors, $one);
         } else{
             $grade += 5;
@@ -58,7 +58,7 @@
          if(sizeof($argues) == $givenArgCount){
             $grade += 5;
          } else{
-            $two = "- Incorrect number of arguments on question #$n. (-5 points)";
+            $two = "> (-5 points) Incorrect number of arguments in answer #$n";
             array_push($errors, $two);
          }
         //***check for successful execution/return value - '10 points max per q'
@@ -117,12 +117,12 @@
                     }
             }      
         if(`python test.py` == null){
-            $three = "- Unable to execute '$rulearray[$i]' in question #$n. (-10 points)";
+            $three = "> (-10 points) Unable to execute '$rulearray[$i]' in answer #$n";
             array_push($errors, $three);
         } else if(`python test.py` == $op){
             $grade += 10;
         } else{
-            $four = "- Incorrect output on question #$n. (-5 points)";
+            $four = "> (-5 points) Incorrect output in answer #$n";
             array_push($errors, $four);
             $grade += 5;
         } 
@@ -137,14 +137,14 @@
     }
     
     //send to backend
-    $size = sizeof($errors);
+/*  $size = sizeof($errors);
     $errors = http_build_query($errors);
     //$errors = urldecode($errors);
     $data = array('uid'=>$temparr[0],
                   'eid'=>$temparr[1],
                   'grade'=>$grade,
                   'size'=>$size);
-    /*          
+              
     $data = http_build_query($data);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
@@ -154,6 +154,6 @@
     $gradecurl = curl_exec($ch); 
     curl_close($ch); */
     
-    echo "$grade\n";
+    echo "$grade\n"; 
 
 ?> 
