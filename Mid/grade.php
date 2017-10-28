@@ -45,11 +45,11 @@
             $arguments = explode(",", $parenthesis[1]);   */
             
             //get parameters from actual method call
-            $stepone = explode("def ", $sampleCode);
-            $methodname = explode("(", $stepone[1]); 
-            $stepuno = explode(":", $sampleCode);
-            $stepdos = explode("$methodname[0]", $stepuno[1]);
-            preg_match('#\((.*?)\)#', $stepdos[1], $parenth);
+            $step = explode("def ", $sampleCode);
+            $methodname = explode("(", $step[1]); 
+            $step = explode(":", $sampleCode);
+            $step = explode("$methodname[0]", $step[1]);
+            preg_match('#\((.*?)\)#', $step[1], $parenth);
             $argues = explode(",", $parenth[1]); 
         }       
          if(sizeof($argues) == $givenArgCount){
