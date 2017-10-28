@@ -6,7 +6,7 @@
     $givenArgCount = 2;
     //assign student input to array
     //$data = $_POST['array'];
-    $data = "student1,0,def test1(,c,def test3(,c";
+    $data = "student1,0,def test1(,c,test3,c";
     $temparr = explode(",", $data);
     $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
     $reqarray = array();
@@ -31,7 +31,7 @@
     
     //***check for properly written func name - '5 points max per q'
     while (list($key, $studentCode) = each($arr)) {
-        if(strpos($studentCode, "$rulearray[$i]") === false){
+        if(strpos($studentCode, "def $rulearray[$i](") === false){
             //do nothing
         } else{
             $grade += 5;
@@ -44,12 +44,11 @@
             $stepone = explode("def", $samplemethod);
             $steptwo = explode(":", $stepone[1]);
             preg_match('#\((.*?)\)#', $steptwo[0], $parenthesis);
-            $arguments = explode(",", $parenthesis[1]);
-            
-            if(sizeof($arguments) == $givenArgCount){
-                $grade += 5;
-            }
+            $arguments = explode(",", $parenthesis[1]);      
         }       
+         if(sizeof($arguments) == $givenArgCount){
+         $grade += 5;
+         }
         //***check for successful execution/return value - '10 points max per q'
           $test = "var1+var2"; //temp var, will be stored equation
           $reqarray[$i] = $test;
@@ -94,6 +93,8 @@
         }else{
             $grade += 5;
         } 
+         $arguments = array();
+         $op = 44.44;
          $i += 1; 
     }
     //100 max
