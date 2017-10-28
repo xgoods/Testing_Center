@@ -21,7 +21,7 @@
     curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
     $dbexec = curl_exec($db); 
     curl_close($db);
-    //FIGURE OUT DEF
+    
     $rules = json_decode($dbexec);
     $first = $rules->{'0'};
     $second = $rules->{'1'};
@@ -29,9 +29,6 @@
     $fourth = $rules->{'3'};
     $rulearray = array($first, $second, $third, $fourth);
     
-    //ARGUMENT VARIABLES HERE 
-    $stored_equation = array("0", "0", "0", "0");
-
     //***check for properly written func name - '5 points max per q'
     while (list($key, $studentCode) = each($arr)) {
         if(strpos($studentCode, "$rulearray[$i]") === false){
