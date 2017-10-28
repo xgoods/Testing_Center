@@ -150,11 +150,10 @@
     $ch = curl_init(); 
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "$data&errors");   
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "$data&errors=$errors");   
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $gradecurl = curl_exec($ch); 
-    curl_close($ch); */
-    
+    curl_close($ch); */ 
     
     echo "$grade\n"; 
 
