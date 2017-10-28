@@ -33,7 +33,7 @@
         
         //***check for properly written func name - '5 points max per q'
         if(strpos($studentCode, "def $rulearray[$i](") === false){
-            //do nothing
+            $one = 'Function improperly named.';
         } else{
             $grade += 5;
         }
@@ -54,6 +54,8 @@
         }       
          if(sizeof($argues) == $givenArgCount){
             $grade += 5;
+         } else{
+            $two = 'Incorrect number of arguments';
          }
         //***check for successful execution/return value - '10 points max per q'
          $test = "var1+var2>var3"; //temp var, will be stored equation
@@ -111,13 +113,13 @@
                     }
             }      
         if(`python test.py` == null){
-            //do nothing
+            $three = 'Unable to execute file.';
         } else if(`python test.py` == $op){
             $grade += 10;
         } else{
+            $four = 'Incorrect output.';
             $grade += 5;
         } 
-         //reset values
          $argues = array();
          $op = 44.44;
          $i += 1; 
@@ -128,7 +130,9 @@
     }
     
     //send to backend
-   /* $ch = curl_init();
+   /* 
+    $send = "uid=$temparr[0]&eid=$temparr[1]&grade=$grade&one=$one&two=$two&three=$three&four=$four";
+    $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, "uid=$temparr[0]&eid=$temparr[1]&grade=$grade");   
