@@ -90,7 +90,7 @@
             //do nothing
         } else if(`python test.py` == $op){
             $grade += 10;
-        }else{
+        } else{
             $grade += 5;
         } 
          $arguments = array();
