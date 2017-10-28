@@ -138,13 +138,9 @@
     
     //send to backend
     $errors = implode(",", $errors);
-    //$size = sizeof($errors);
-    //$errors = http_build_query($errors);
-    //$errors = urldecode($errors);
     $data = array('uid'=>$temparr[0],
                   'eid'=>$temparr[1],
-                  'grade'=>$grade,
-                  'size'=>$size);
+                  'grade'=>$grade);
               
     $data = http_build_query($data); /*
     $ch = curl_init(); 
@@ -156,5 +152,4 @@
     curl_close($ch); */ 
     
     echo "$grade\n"; 
-
 ?> 
