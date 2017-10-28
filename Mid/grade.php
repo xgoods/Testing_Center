@@ -2,7 +2,7 @@
     
     //$grade = $_POST['grade'];
     $grade = $i = 0;
-    $givenArgCount = 2;
+    $givenArgCount = 3;
     //assign student input to array
     //$data = $_POST['array'];
     $data = "student1,0,def test1(,c,test3,c";
@@ -12,7 +12,7 @@
     
     //TEMPORARY VARIABLES
     $sampleinput = 'print("5")';
-    $samplemethod = 'def test1(2,3):';
+    $samplemethod = 'def test1(2,3,4):';
     
     //get array of rules from db
     $db = curl_init();
@@ -49,14 +49,14 @@
          $grade += 5;
          }
         //***check for successful execution/return value - '10 points max per q'
-          $test = "var1+var2"; //temp var, will be stored equation
+          $test = "var1+var2>var3"; //temp var, will be stored equation
           $reqarray[$i] = $test;
          for ($x = 0; $x < $givenArgCount; $x++) {
             $j = $x + 1;
             $reqarray[$i] = str_replace("var$j",$arguments[$x],$reqarray[$i]);
         }   
          for ($g = 2; $g <= $givenArgCount; $g++){
-                if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
+                if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
                 $operator = $match[2];
                 switch($operator){
                     case '+':
@@ -79,6 +79,24 @@
                         $op = pow($match[1],$match[3]);
                         $str = "$match[1]^$match[3]";
                         break;
+                    case '<':
+                        if($match[1]<$match[3]){
+                            $op = $match[1]-0;
+                            "$match[1]<$match[3]";
+                        } else{
+                            $op = $match[3]-0;
+                            $str = "$match[1]<$match[3]";
+                        }
+                        break;
+                    case '>':
+                        if($match[1]>$match[3]){
+                            $op = $match[1]-0;
+                            $str = "$match[1]>$match[3]";
+                        } else{
+                            $op = $match[3]-0;
+                            $str = "$match[1]>$match[3]";
+                        }
+                        break;
                     }
                     $replace = str_replace($str,$op,$reqarray[$i]);
                     $reqarray[$i] = $replace;
@@ -93,6 +111,7 @@
             $grade += 5;
         } 
          $arguments = array();
+         echo "$op\n";
          $op = 44.44;
          $i += 1; 
     }
