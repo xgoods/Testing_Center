@@ -33,7 +33,7 @@
         
         //***check for properly written func name - '5 points max per q'
         if(strpos($studentCode, "def $rulearray[$i](") === false){
-            $one = '-Function improperly named';
+            $one = '- Function improperly named';
         } else{
             $grade += 5;
         }
@@ -55,7 +55,7 @@
          if(sizeof($argues) == $givenArgCount){
             $grade += 5;
          } else{
-            $two = '-Incorrect number of arguments';
+            $two = '- Incorrect number of arguments';
          }
         //***check for successful execution/return value - '10 points max per q'
          $test = "var1+var2>var3"; //temp var, will be stored equation
@@ -113,11 +113,11 @@
                     }
             }      
         if(`python test.py` == null){
-            $three = '-Unable to execute file';
+            $three = '- Unable to execute file';
         } else if(`python test.py` == $op){
             $grade += 10;
         } else{
-            $four = '-Incorrect output';
+            $four = '- Incorrect output';
             $grade += 5;
         } 
          //reset values
