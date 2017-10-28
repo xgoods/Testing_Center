@@ -27,27 +27,28 @@
     $third = $rules->{'2'};
     $fourth = $rules->{'3'};
     $rulearray = array($first, $second, $third, $fourth);
-    
-    //***check for properly written func name - '5 points max per q'
-    while (list($key, $studentCode) = each($arr)) {
+      
+    while(list($key, $studentCode) = each($arr)){
+        file_put_contents ('test.py', $sampleinput);//$studentCode
+        
+        //***check for properly written func name - '5 points max per q'
         if(strpos($studentCode, "def $rulearray[$i](") === false){
             //do nothing
         } else{
             $grade += 5;
         }
         //***check for correct number of arguments - '5 points'
-        if(strpos($sampleCode, "def $rulearray[$i](") === false || 
-           strpos($sampleCode, "):") === false){
-            //do nothing
-        } else{
+        if(`python test.py` !== null){
            /* $stepone = explode("def", $sampleCode);//$studentCode
             $steptwo = explode(":", $stepone[1]);
             preg_match('#\((.*?)\)#', $steptwo[0], $parenthesis);
             $arguments = explode(",", $parenthesis[1]);   */
             
             //get parameters from actual method call
-            $stepuno = explode(":", $sampleCode);//$studentCode
-            $stepdos = explode("$rulearray[$i]", $stepuno[1]);
+            $stepone = explode("def ", $sampleCode);
+            $methodname = explode("(", $stepone[1]); 
+            $stepuno = explode(":", $sampleCode);
+            $stepdos = explode("$methodname[0]", $stepuno[1]);
             preg_match('#\((.*?)\)#', $stepdos[1], $parenth);
             $argues = explode(",", $parenth[1]); 
         }       
@@ -57,11 +58,11 @@
         //***check for successful execution/return value - '10 points max per q'
           $test = "var1+var2>var3"; //temp var, will be stored equation
           $reqarray[$i] = $test;
-         for ($x = 0; $x < $givenArgCount; $x++) {
+         for($x = 0; $x < $givenArgCount; $x++){
             $j = $x + 1;
             $reqarray[$i] = str_replace("var$j",$argues[$x],$reqarray[$i]);
         }   
-         for ($g = 2; $g <= $givenArgCount; $g++){
+         for($g = 2; $g <= $givenArgCount; $g++){
                 if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
                 $operator = $match[2];
                 switch($operator){
@@ -108,7 +109,6 @@
                     $reqarray[$i] = $replace;
                     }
             }      
-        file_put_contents ('test.py', $sampleinput);
         if(`python test.py` == null){
             //do nothing
         } else if(`python test.py` == $op){
