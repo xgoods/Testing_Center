@@ -131,15 +131,22 @@
     }
     
     //send to backend
-   /* 
-    $send = "uid=$temparr[0]&eid=$temparr[1]&grade=$grade&one=$one&two=$two&three=$three&four=$four";
+/*  $data = array('uid'=>$temparr[0],
+              'eid'=>$temparr[1],
+              'grade'=>$grade,
+              'one'=>$one,
+              'two'=>$two,
+              'three'=>$three,
+              'four'=>$four);
+              
+    $data = http_build_query($data);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "uid=$temparr[0]&eid=$temparr[1]&grade=$grade");   
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "$data");   
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $gradecurl = curl_exec($ch); 
-    curl_close($ch);*/
+    curl_close($ch); */
    
     echo "$grade\n";
 
