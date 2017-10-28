@@ -52,11 +52,11 @@
         //***check for successful execution/return value - '10 points max per q'
           $test = "var1+var2"; //temp var, will be stored equation
           $reqarray[$i] = $test;
-            for ($x = 0; $x < $givenArgCount; $x++) {
+         for ($x = 0; $x < $givenArgCount; $x++) {
             $j = $x + 1;
             $reqarray[$i] = str_replace("var$j",$arguments[$x],$reqarray[$i]);
         }   
-            for ($g = 2; $g <= $givenArgCount; $g++){
+         for ($g = 2; $g <= $givenArgCount; $g++){
                 if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
                 $operator = $match[2];
                 switch($operator){
