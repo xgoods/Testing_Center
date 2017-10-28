@@ -8,6 +8,7 @@
     $data = "student1,0,def test1(,c,test3,c";
     $temparr = explode(",", $data);
     $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
+    $errors = array();
     $reqarray = array(); //will hold stored equations
     
     //TEMPORARY VARIABLES
@@ -29,11 +30,13 @@
     $rulearray = array($first, $second, $third, $fourth);
       
     while(list($key, $studentCode) = each($arr)){
+        $n = $i + 1;
         file_put_contents ('test.py', $sampleinput);//$studentCode
         
         //***check for properly written func name - '5 points max per q'
         if(strpos($studentCode, "def $rulearray[$i](") === false){
-            $one = '- Function improperly named';
+            $one = "- Did not name function '$rulearray[$i]' on question #$n. (-5 points)";
+            array_push($errors, $one);
         } else{
             $grade += 5;
         }
@@ -55,7 +58,8 @@
          if(sizeof($argues) == $givenArgCount){
             $grade += 5;
          } else{
-            $two = '- Incorrect number of arguments';
+            $two = "- Incorrect number of arguments on question #$n. (-5 points)";
+            array_push($errors, $two);
          }
         //***check for successful execution/return value - '10 points max per q'
          $test = "var1+var2>var3"; //temp var, will be stored equation
@@ -113,11 +117,12 @@
                     }
             }      
         if(`python test.py` == null){
-            $three = '- Unable to execute file';
+            $three = "- Unable to execute '$rulearray[$i]' in question #$n. (-10 points)";
+            array_push($errors, $three);
         } else if(`python test.py` == $op){
             $grade += 10;
         } else{
-            $four = '- Incorrect output';
+            $four = "- Incorrect output on question #$n. (-5 points)";
             $grade += 5;
         } 
          //reset values
@@ -131,23 +136,23 @@
     }
     
     //send to backend
-/*  $data = array('uid'=>$temparr[0],
-              'eid'=>$temparr[1],
-              'grade'=>$grade,
-              'one'=>$one,
-              'two'=>$two,
-              'three'=>$three,
-              'four'=>$four);
-              
+    $size = sizeof($errors);
+    $errors = http_build_query($errors);
+    //$errors = urldecode($errors);
+    $data = array('uid'=>$temparr[0],
+                  'eid'=>$temparr[1],
+                  'grade'=>$grade,
+                  'size'=>$size);
+    /*          
     $data = http_build_query($data);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "$data");   
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "$data&errors");   
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $gradecurl = curl_exec($ch); 
     curl_close($ch); */
-   
+    
     echo "$grade\n";
 
 ?> 
