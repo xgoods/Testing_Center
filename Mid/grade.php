@@ -12,7 +12,7 @@
     
     //TEMPORARY VARIABLES
     $sampleinput = 'print("5")';
-    $samplemethod = 'def test1(2,3,4):';
+    $sampleCode = 'def test1(one,two,three): test1(2,3,4) return';
     
     //get array of rules from db
     $db = curl_init();
@@ -36,16 +36,22 @@
             $grade += 5;
         }
         //***check for correct number of arguments - '5 points'
-        if(strpos($samplemethod, "def $rulearray[$i](") === false || 
-           strpos($samplemethod, "):") === false){
+        if(strpos($sampleCode, "def $rulearray[$i](") === false || 
+           strpos($sampleCode, "):") === false){
             //do nothing
         } else{
-            $stepone = explode("def", $samplemethod);
+           /* $stepone = explode("def", $sampleCode);//$studentCode
             $steptwo = explode(":", $stepone[1]);
             preg_match('#\((.*?)\)#', $steptwo[0], $parenthesis);
-            $arguments = explode(",", $parenthesis[1]);      
+            $arguments = explode(",", $parenthesis[1]);   */
+            
+            //get parameters from actual method call
+            $stepuno = explode(":", $sampleCode);//$studentCode
+            $stepdos = explode("$rulearray[$i]", $stepuno[1]);
+            preg_match('#\((.*?)\)#', $stepdos[1], $parenth);
+            $argues = explode(",", $parenth[1]); 
         }       
-         if(sizeof($arguments) == $givenArgCount){
+         if(sizeof($argues) == $givenArgCount){
          $grade += 5;
          }
         //***check for successful execution/return value - '10 points max per q'
@@ -53,7 +59,7 @@
           $reqarray[$i] = $test;
          for ($x = 0; $x < $givenArgCount; $x++) {
             $j = $x + 1;
-            $reqarray[$i] = str_replace("var$j",$arguments[$x],$reqarray[$i]);
+            $reqarray[$i] = str_replace("var$j",$argues[$x],$reqarray[$i]);
         }   
          for ($g = 2; $g <= $givenArgCount; $g++){
                 if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
@@ -110,8 +116,9 @@
         } else{
             $grade += 5;
         } 
-         $arguments = array();
-         echo "$op\n";
+         echo sizeof($argues);
+         $argues = array();
+         echo "$grade\n";
          $op = 44.44;
          $i += 1; 
     }
