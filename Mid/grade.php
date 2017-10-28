@@ -120,6 +120,7 @@
             $four = 'Incorrect output.';
             $grade += 5;
         } 
+         //reset values
          $argues = array();
          $op = 44.44;
          $i += 1; 
