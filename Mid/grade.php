@@ -5,8 +5,8 @@
     $givenArgCount = 3;
     //assign student input to array
     //$data = $_POST['array'];
-    $data = "student1,0,def test1(,c,test3,c";
-    $temparr = explode(",", $data);
+    $data = "student1~0~def test1(~c~test3~c";
+    $temparr = explode("~", $data);
     $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
     $errors = array();
     $reqarray = array(); //will hold stored equations
@@ -137,10 +137,13 @@
     }
     
     //send to backend
-    $errors = implode(",", $errors);
+    $errors = implode("~", $errors);
+    //$errors = http_build_query($errors);
+    //$errors = urldecode($errors);
     $data = array('uid'=>$temparr[0],
                   'eid'=>$temparr[1],
-                  'grade'=>$grade);
+                  'grade'=>$grade,
+                  'size'=>$size);
               
     $data = http_build_query($data); /*
     $ch = curl_init(); 
@@ -152,4 +155,5 @@
     curl_close($ch); */ 
     
     echo "$grade\n"; 
+
 ?> 
