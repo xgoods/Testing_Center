@@ -116,9 +116,7 @@
         } else{
             $grade += 5;
         } 
-         echo sizeof($argues);
          $argues = array();
-         echo "$grade\n";
          $op = 44.44;
          $i += 1; 
     }
