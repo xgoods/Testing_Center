@@ -55,7 +55,7 @@
          if(sizeof($argues) == $givenArgCount){
             $grade += 5;
          } else{
-            $two = 'Incorrect number of arguments';
+            $two = 'Incorrect number of arguments.';
          }
         //***check for successful execution/return value - '10 points max per q'
          $test = "var1+var2>var3"; //temp var, will be stored equation
