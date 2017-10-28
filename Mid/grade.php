@@ -53,11 +53,12 @@
             $argues = explode(",", $parenth[1]); 
         }       
          if(sizeof($argues) == $givenArgCount){
-         $grade += 5;
+            $grade += 5;
          }
         //***check for successful execution/return value - '10 points max per q'
-          $test = "var1+var2>var3"; //temp var, will be stored equation
-          $reqarray[$i] = $test;
+         $test = "var1+var2>var3"; //temp var, will be stored equation
+         $reqarray[$i] = $test;
+        
          for($x = 0; $x < $givenArgCount; $x++){
             $j = $x + 1;
             $reqarray[$i] = str_replace("var$j",$argues[$x],$reqarray[$i]);
