@@ -1,15 +1,14 @@
 <?php
     
-    $i = 0; 
     //$grade = $_POST['grade'];
-    $grade = 0;
+    $grade = $i = 0;
     $givenArgCount = 2;
     //assign student input to array
     //$data = $_POST['array'];
     $data = "student1,0,def test1(,c,test3,c";
     $temparr = explode(",", $data);
     $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
-    $reqarray = array();
+    $reqarray = array(); //will hold stored equations
     
     //TEMPORARY VARIABLES
     $sampleinput = 'print("5")';
@@ -112,4 +111,5 @@
     curl_close($ch);*/
    
     echo "$grade\n";
+
 ?> 
