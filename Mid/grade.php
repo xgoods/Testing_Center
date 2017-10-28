@@ -123,6 +123,7 @@
             $grade += 10;
         } else{
             $four = "- Incorrect output on question #$n. (-5 points)";
+            array_push($errors, $four);
             $grade += 5;
         } 
          //reset values
