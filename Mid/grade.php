@@ -36,7 +36,7 @@
         } else{
             $grade += 5;
         }
-        //***check for number of arguments;
+        //***check for number of arguments
         if(strpos($samplemethod, "def $rulearray[$i](") === false || 
            strpos($samplemethod, "):") === false){
             //do nothing
