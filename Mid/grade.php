@@ -36,7 +36,7 @@
         } else{
             $grade += 5;
         }
-        //***check for number of arguments
+        //***check for correct number of arguments - '5 points'
         if(strpos($samplemethod, "def $rulearray[$i](") === false || 
            strpos($samplemethod, "):") === false){
             //do nothing
@@ -45,6 +45,10 @@
             $steptwo = explode(":", $stepone[1]);
             preg_match('#\((.*?)\)#', $steptwo[0], $parenthesis);
             $arguments = explode(",", $parenthesis[1]);
+            
+            if(sizeof($arguments) == $givenArgCount){
+                $grade += 5;
+            }
         }       
         //***check for successful execution/return value - '10 points max per q'
           $test = "var1+var2"; //temp var, will be stored equation
