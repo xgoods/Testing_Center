@@ -62,7 +62,7 @@
             array_push($errors, $two);
          }
         //***check for successful execution/return value - '10 points max per q'
-         $test = "var1 + var2 < var3"; //temp var, will be stored equation
+         $test = "var1+var2<var3"; //temp var, will be stored equation
          $test= str_replace(" ","",$test);
          $reqarray[$i] = $test;
         
@@ -73,8 +73,7 @@
         //$lol = implode(' ',$reqarray[$i]);
          for($g = 2; $g <= $givenArgCount; $g++){
                 if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
-                $operator = $match[2];
-                switch($operator){
+                switch($match[2]){
                     case '+':
                         $op = $match[1]+$match[3];
                         $str = "$match[1]+$match[3]";
