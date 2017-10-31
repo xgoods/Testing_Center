@@ -13,7 +13,7 @@
     
     //TEMPORARY VARIABLES
     $sampleinput = 'print("5")';
-    $sampleCode = 'def test1(one,two,three): test1(2,3,4) return';
+    $sampleCode = 'def test1(one,two,three): test1(9,3,5); return';
     
     //get array of rules from db
     $db = curl_init();
@@ -62,13 +62,15 @@
             array_push($errors, $two);
          }
         //***check for successful execution/return value - '10 points max per q'
-         $test = "var1+var2>var3"; //temp var, will be stored equation
+         $test = "var1 + var2 < var3"; //temp var, will be stored equation
+         $test= str_replace(" ","",$test);
          $reqarray[$i] = $test;
         
          for($x = 0; $x < $givenArgCount; $x++){
             $j = $x + 1;
             $reqarray[$i] = str_replace("var$j",$argues[$x],$reqarray[$i]);
-        }   
+        }
+        //$lol = implode(' ',$reqarray[$i]);
          for($g = 2; $g <= $givenArgCount; $g++){
                 if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
                 $operator = $match[2];
