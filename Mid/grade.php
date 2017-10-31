@@ -70,7 +70,6 @@
             $j = $x + 1;
             $reqarray[$i] = str_replace("var$j",$argues[$x],$reqarray[$i]);
         }
-        //$lol = implode(' ',$reqarray[$i]);
          for($g = 2; $g <= $givenArgCount; $g++){
                 if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
                 switch($match[2]){
