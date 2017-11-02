@@ -23,7 +23,7 @@ session_start();
                 <input type="button" value="View Exam Results" onclick="location.href='examResults.php'">
             </p>
         </form>
-        <form name="backLogin" action="login.html">
+        <form name="backLogin" action="index.html">
           <input type="submit" name="submit" id="submit" value="Back to login">
         </form>
    </body>

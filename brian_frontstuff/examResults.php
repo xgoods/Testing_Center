@@ -46,10 +46,10 @@
         echo "<input type='radio' name='examName' value='$value'>".$exam."<br>";
     }
     echo "<p>";
-    echo "<input type='submit' name='submit' value='release'>";
+    echo "<input type='submit' name='submit' value='View'>";
     echo "</p>";
     echo "</form>";
-    echo "<form name='backLogin' action='teacherHome.php'>
+    echo "<form name='backLogin' action='studentHome.php'>
             <input type='submit' name='submit' id='submit' value='Back to Menu'>
           </form>";
 	array_push($sendBack,$userName);
@@ -57,7 +57,7 @@
 	array_push($sendBack,$value);
 	$an = implode(' ',$sendBack);
 
-	print_r($an);
+	//print_r($an);
 	
 	$url = "https://web.njit.edu/~ad379/ListStudentGrades.php";
     $ch = curl_init();
@@ -72,6 +72,3 @@
 	
 ?>
 
-<?php
-    //session_destroy();
-?>
