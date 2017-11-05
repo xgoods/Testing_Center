@@ -11,10 +11,6 @@
     $errors = array();
     $reqarray = array(); //will hold stored equations
     
-    //TEMPORARY VARIABLES
-    $sampleinput = 'print("5")';
-    //$sampleCode = 'def test1(one,two,three): test1(9,3,5); return';
-    
     //get array of rules from db
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");  
@@ -30,10 +26,7 @@
     $rulearray = array($first, $second, $third, $fourth);
       
     while(list($key, $studentCode) = each($arr)){
-        $n = $i + 1;      
-        echo "$answers[$i]\n";
-        $sampleCode = $arr[$i];
-        
+        $n = $i + 1;          
         //***check for properly written func name - '5 points'
         if(strpos($studentCode, "def $rulearray[$i]") === false){
             $one = "> (-5 points) Did not name the function '$rulearray[$i]' in answer #$n";
@@ -43,9 +36,9 @@
         }
         //***check for correct number of arguments - '5 points'    
         //get parameters from actual method call
-        $step = explode("def ", $sampleCode);
+        $step = explode("def ", $arr[$i]);
         $methodname = explode("(", $step[1]); 
-        $step = explode(":", $sampleCode);
+        $step = explode(":", $arr[$i]);
         $step = explode("$methodname[0]", $step[1]);
         preg_match('#\((.*?)\)#', $step[1], $parenth);
         $argues = explode(",", $parenth[1]);
@@ -125,8 +118,6 @@
          $argues = array();
          $op = 44.44;
          $i += 1; 
-         echo "$grade\n";
-         $grade = 0;
     }
     //100 max
     if($grade > 100){
@@ -152,5 +143,6 @@
     curl_close($ch); */ 
     
     echo "$errors\n";
+    echo "$grade\n";
     
 ?> 
