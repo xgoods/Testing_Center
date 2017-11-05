@@ -122,8 +122,6 @@
 
     //send to backend
     $errors = implode("~", $errors);
-    //$errors = http_build_query($errors);
-    //$errors = urldecode($errors);
     $data = array('uid'=>$temparr[0],
                   'eid'=>$temparr[1],
                   'grade'=>$grade,
