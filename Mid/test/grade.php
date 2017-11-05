@@ -119,11 +119,7 @@
          $op = 44.44;
          $i += 1; 
     }
-    //100 max
-    if($grade > 100){
-        $grade = 100;
-    }
-    
+
     //send to backend
     $errors = implode("~", $errors);
     //$errors = http_build_query($errors);
