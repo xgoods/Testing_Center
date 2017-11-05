@@ -8,6 +8,7 @@ print(exec)';
     $third = 'def test3(one,two,three): test3(9,3,5); return';
     $fourth = 'def test1(one,two): test1(3,5); return';
     $briansarray = array("student1","0","$first","$second","$third","$fourth");
+//-----------------
     $ansarray = array();
     $j = 2;
     for ($i = 0; $i < 4; $i++){
@@ -21,7 +22,7 @@ print(exec)';
     }
     $code = implode('~', $briansarray);
     $answers = implode('~',$ansarray);
-
+//----------------------
     $ch = curl_init(); 
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~kl297/grade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
