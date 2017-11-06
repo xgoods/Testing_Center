@@ -124,8 +124,7 @@
     $errors = implode("~", $errors);
     $data = array('uid'=>$temparr[0],
                   'eid'=>$temparr[1],
-                  'grade'=>$grade,
-                  'size'=>$size);
+                  'grade'=>$grade);
               
     $data = http_build_query($data); /*
     $ch = curl_init(); 
