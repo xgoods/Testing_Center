@@ -51,12 +51,12 @@
          }
         //***check for successful execution/return value - '10 points max per q'
          $op = "var1+var2+var3"; //temp var, will be stored equation
-         $op = str_replace(" ", "", $op);
+         $op = str_replace(" ", "", "$op");
          $reqarray[$i] = $op;
         
          for($x = 0; $x < $givenArgCount; $x++){
             $j = $x + 1;
-            $reqarray[$i] = str_replace("var$j",$argues[$x],$reqarray[$i]);
+            $reqarray[$i] = str_replace("var$j", "$argues[$x]", "$reqarray[$i]");
         }
          for($g = 2; $g <= $givenArgCount; $g++){
                 if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
