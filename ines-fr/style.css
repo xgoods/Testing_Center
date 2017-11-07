@@ -1,0 +1,455 @@
+html{
+    background: url("./bckg.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    background-size: 100% 100%;
+    height: 100%;
+}
+
+body{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left:0;
+}
+.alpha{
+    margin-top: 150px;
+    width: auto;
+    height: auto;
+    font-family: Lucida Sans;
+}
+
+.inputbox{
+    height: 30px;
+    width: 200px;
+    margin-top: 10px;
+    border: none;
+    font-family: Lucida Sans;
+    font-size: 22px;
+    background-color: transparent;  
+}
+
+.button{
+    width: 75px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 58%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(69, 67, 59, 0.77);
+}
+
+.tabs{
+    position: fixed;
+    top:15%;
+    width:200px;
+    left:45%;
+    font-family: Lucida Sans;
+    font-size: 18px;
+}
+
+.studentImg{
+    position: fixed;
+    width: 70%;
+    min-height: 400px;
+    top:30%;
+    left:15%;
+    height:40%;
+    border-radius: 5px;
+    opacity: 0.8;
+    filter: brightness(50%);
+}
+
+.header{
+    text-align: center;
+    width: auto;
+    left: 60%;
+    height: 20px; 
+    font-size: 32px;
+    margin-top: 12px; 
+    font-family: Lucida Sans;
+    font-weight: bold;
+    color: rgba(45, 46, 41, 1);
+
+}
+
+.sidebar{
+    height:100%;
+    width:250px;
+    background-color:#fff;
+    position:fixed;
+    z-index:1;
+    overflow:auto;
+    background-color: rgba(0, 0, 0, 0.11);
+}
+
+.animate-left{
+    position:relative;
+    animation:animateleft 0.4s
+}
+@keyframes animateleft{
+    from{left:-300px;opacity:0} to{left:0;opacity:1}
+}
+
+.overlay{
+    position:fixed;
+    display:none;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0,0,0,0.5);
+    z-index:2
+}
+
+.animate-opacity{
+    animation:opac 0.8s
+}
+@keyframes opac{
+    from{opacity:0} to{opacity:1}
+}
+
+.bar-block .bar-item{
+    width:100%;
+    display:block;
+    padding:8px 16px;
+    text-align:left;
+    font-family: Lucida Sans;
+    font-size: 18px;
+    border:none;
+    outline:none;
+    white-space:normal;
+    float:none
+    color: black;
+}
+
+.btnLay{
+    position: fixed;
+    color: rgba(45, 46, 41, 1);
+    background-color: rgb(22, 157, 132);
+    top: 11.9%;
+    border-radius: 5px;
+}
+
+.large{
+    font-size:18px;
+    font-family: Lucida Sans;
+}
+
+.xxlarge{
+    font-size:36px;
+    font-family: Lucida Sans;
+}
+
+.buttonBar{
+    border:none;
+    display:inline-block;
+    outline:0;
+    padding:8px 16px;
+    vertical-align:middle;
+    overflow:hidden;
+    text-decoration:none;
+    color:;
+    background-color:;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap
+} 
+
+a{
+    color: rgba(79, 80, 73, 1);
+}
+
+.container {
+    margin-top: 50px;
+    display: table;
+    width: 100%;
+    height: 40%;
+}
+
+img{
+    width:100px;
+    height: 100px;
+}
+
+.intro{
+    width: 80%;
+    height: 300px;
+    left: 0px;
+    position: absolute;
+    top:200px;
+}
+
+.description{
+    width: 100%;
+    height: 200px;
+    background-color: rgb(52, 203, 152);
+    border-radius: 10px;
+    text-align: left;
+    font-size: 26px;
+    margin-top: 20px; 
+    padding-left: 10px;
+    font-family: Lucida Sans;
+}
+
+.chooseExam{
+    top:40%;
+    width: 50%;
+    height: 40%;
+    left:30%;
+    position: fixed;
+}
+
+.dropDown{
+    -moz-appearance: none;
+    min-width: 350px;
+    width: 30%;
+    left:0px;
+    top:0px;
+    border-radius: 8px;
+    padding-left: 10px;
+    font-family: Lucida Sans;
+    font-size: 18px;
+    text-align: left;
+    opacity: 0.8;
+    border: none;
+    outline: none;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgba(69, 67, 59, 0.77);
+}
+
+select option:hover{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-left: 4px;
+    font-family: Lucida Sans;
+    border-style: ;
+    display: block;
+    border-radius: 8px;
+    box-shadow: inset 20px 20px #5e5e5e;
+
+}
+
+.teacherMain
+{
+    position: absolute;
+    top:200px;
+    width: 30%;
+    height: 200px; 
+    text-align: left;
+    border-radius: 5px;
+    right: 0px;
+    font-size: 22px;
+    font-family: Lucida Sans;
+    margin-left: 10px;
+    margin-top: 50px;
+    padding-left:40px;
+    padding-top: 5%;
+    padding-right: 20px;
+    margin-right: 50px;
+    background-color: rgba(17, 120, 102, 1);
+}
+
+.slideshow-container {
+   position: fixed;
+   width: 20px;
+}
+
+.slides {
+    display: none;
+    width: 45%;
+    top: 21.5%;
+    left: 10%;
+    height: 70%;
+    position: fixed;
+}
+
+.teacherImg{
+    height: 100%;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.text {
+  color: #f2f2f2;
+  font-size: 32px;
+  font-family: Lucida Sans;
+  padding: 8px 12px;
+  position: fixed;
+  bottom: 10%;
+  width: 200px;
+  left: 25%;
+  text-align: center;
+  background-color: rgba(142, 159, 143, 0.39);
+  border-radius: 4px;
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.head{
+    position: fixed;
+    top:22%;
+    height: 10%;
+    width: 50%;
+    left:10%;
+    font-family: Lucida Sans;
+    font-size: 28px;
+    color: rgba(45, 46, 41, 1);
+}
+
+.containerAdd{
+    position: fixed;
+    margin-top: 10px;
+    padding-top: 20px;
+    top:30%;
+    height:60%;
+    width: 90%;
+    font-family: Lucida Sans;
+    color: rgba(45, 46, 41, 1);
+}
+
+.left_side{
+    position: fixed;
+    width: 50%;
+    height: 60%;
+    left: 10%;
+}
+
+.right_side{
+    position: fixed;
+    width: 30%;
+    height: 40%;
+    left: 60%;
+}
+
+.scroll{
+    overflow: scroll;
+}
+
+.left-side::-webkit-scrollbar{
+    width: 8px;
+}
+
+.left-side::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: red;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.left-side::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.textarea
+{
+    height: 300px;
+    width: 67%;
+    font-size: 18px;
+    font-family: Lucida Sans;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: rgba(188, 194, 230, 0.77);
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+
+.instructions
+{
+    font-size: 18px;
+    font-family: Lucida Sans;
+}
+
+.njit
+{
+    visibility: hidden;
+    /*width: 500px;
+    height: 40px; 
+    position: fixed;
+    text-align: center;
+    border-radius: 5px;   
+    margin-top: 50px;
+    font-size: 26px;
+    font-weight: bold;
+    color: antiquewhite;*/
+}
+
+.database
+{
+    visibility: hidden;
+   /* width: 500px;
+    height: 40px; 
+    text-align: center;
+    position:fixed;
+    border-radius: 5px;
+    margin-top: 50px;
+
+    font-size: 26px;
+    font-weight: bold;
+    color: rgba(101, 27, 27, 1);
+    color: antiquewhite;*/
+}
+
+.fti
+{   
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 87%;
+    left: 45%;
+}
