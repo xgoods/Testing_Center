@@ -67,7 +67,7 @@
             $reqarray[$i] = str_replace("var$j", "$argues[$x]", "$reqarray[$i]");
         }
          for($g = 2; $g <= $givenArgCount; $g++){
-                if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE &&
+                if(preg_match('/(\d+)(?:\s*)([\+\sort\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE &&
                   $answers[$i] !== 'null'){
                 switch($match[2]){
                     case '+':
@@ -108,6 +108,13 @@
                             $op = $match[3]-0;
                             $str = "$match[1]>$match[3]";
                         }
+                        break;
+                    case 'sort':
+                        $sort = "0810413491";
+                        $sort = str_split($argues[0]);
+                        $sort($sort);
+                        $op = implode('',$first);
+                        $str = "$op";
                         break;
                     }
                     $replace = str_replace($str,$op,$reqarray[$i]);
