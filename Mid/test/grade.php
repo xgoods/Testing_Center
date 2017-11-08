@@ -2,6 +2,8 @@
     
     $grade = $i = 0;
     $givenArgCount = 3;
+    //**GET IMPLODED ARRAY $maxpoints = $_POST['points'];
+    $maxpoints = array("25","1","1","1");
     //assign student input to array
     $data = $_POST['code'];
     $temparr = explode("~", $data);
@@ -27,14 +29,15 @@
       
     while(list($key, $studentCode) = each($arr)){
         $n = $i + 1;          
-        //***check for properly written func name - '5 points'
+        $points = $maxpoints[$i]/4;
+        //***check for properly written func name 
         if(strpos($studentCode, "def $rulearray[$i]") === false){
-            $one = "> (-5 points) Did not name the function '$rulearray[$i]' in answer #$n";
+            $one = "> (-$points points) Did not name the function '$rulearray[$i]' in answer #$n";
             array_push($errors, $one);
         } else{
-            $grade += 5;
+            $grade += $points;
         }
-        //***check for correct number of arguments - '5 points'    
+        //***check for correct number of arguments    
         //get parameters from actual method call
         $step = explode("def ", $arr[$i]);
         $methodname = explode("(", $step[1]); 
@@ -44,12 +47,12 @@
         $argues = explode(",", $parenth[1]);
         
          if(sizeof($argues) == $givenArgCount){
-            $grade += 5;
+            $grade += $points;
          } else{
-            $two = "> (-5 points) Incorrect number of arguments in answer #$n";
+            $two = "> (-$points points) Incorrect number of arguments in answer #$n";
             array_push($errors, $two);
          }
-        //***check for successful execution/return value - '10 points max per q'
+        //***check for successful execution/return value 
          $op = "var1+var2+var3"; //temp var, will be stored equation'
          if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $argues[1], $mat) !== FALSE &&
             $answers[$i] !== 'null'){
@@ -111,14 +114,15 @@
                     }
             }      
         if($answers[$i] == 'null'){
-            $three = "> (-15 points) Unable to execute code in answer #$n";
+            $dubpoints = $points * 2;
+            $three = "> (-$dubpoints points) Unable to execute code in answer #$n";
             array_push($errors, $three);
         } else if($answers[$i] == $op){
-            $grade += 15;
+            $grade += $dubpoints;
         } else{
-            $four = "> (-8 points) Incorrect output in answer #$n";
+            $four = "> (-$points points) Incorrect output in answer #$n";
             array_push($errors, $four);
-            $grade += 7;
+            $grade += $points;
         } 
          //reset values
          $argues = array();
