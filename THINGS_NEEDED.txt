@@ -1,0 +1,21 @@
+Ashish
+--------------
+1) echo only in json format (ex: {"x":"y"})
+2) preferrably in the gradingrubric.php echo, i need a json array with points per questions and teacher's equations
+
+Kevin
+---------------
+
+
+
+
+
+Ines
+---------------
+
+
+
+
+
+Brian
+----------------
