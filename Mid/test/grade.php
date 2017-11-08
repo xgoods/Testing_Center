@@ -121,7 +121,7 @@
                     }
             }
         //hard-code prevention, ensures function call is printed
-        $temp = $studentCode;
+        /*$temp = $studentCode;
         $step = explode("def ", $temp);
         $methodname = explode("(", $step[1]); 
         $step = explode("$methodname[0]", $step[1]);
@@ -133,7 +133,7 @@
         $varname = str_replace(" ","",$step[$last]);
         $check = explode("$methodname[0]", $studentCode);
         $last = sizeof($check)-1;
-        $occur = substr_count($check[1], $varname);
+        $occur = substr_count($check[1], $varname);*/
         
         if($answers[$i] == 'null'){
             $dubpoints = $points * 2;
