@@ -54,7 +54,7 @@
          }
         //***check for successful execution/return value 
          $op = "var1+var2+var3"; //temp var, will be stored equation'
-         if(preg_match('/(\d+)(?:\s*)([\+\-\*\&\^\<\>\/])(?:\s*)(\d+)/', $argues[0], $mat) !== FALSE &&
+         if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $argues[0], $mat) !== FALSE &&
             $answers[$i] !== 'null'){
             $argues[0] = str_replace('"','',$argues[0]);
             $op = "$argues[1] $argues[0] $argues[2]";       
