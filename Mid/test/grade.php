@@ -80,6 +80,7 @@
                         break;
                     case '/':
                         $op = $match[1]/$match[3];
+                        $op = floor($op);
                         $str = "$match[1]/$match[3]";
                         break;
                     case '^':
