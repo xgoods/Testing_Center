@@ -141,7 +141,7 @@
             array_push($errors, $three);
         } else if($answers[$i] == $op && strpos($studentCode, "print("$op")" === false
                  && strpos($studentCode, "return $op") === false && $givenArgCount == sizeof($argues)
-                 && $occur < 2 || $answers[$i] == -1.1){
+                 || $answers[$i] == -1.1){
             $grade += $dubpoints;
         } else{
             $four = "> (-$points points) Incorrect output in answer #$n";
