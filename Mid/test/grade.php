@@ -39,9 +39,9 @@
         }
         //***check for correct number of arguments    
         //get parameters from actual method call
-        $step = explode("def ", $arr[$i]);
+        $step = explode("def ", $studentCode);
         $methodname = explode("(", $step[1]); 
-        $step = explode(":", $arr[$i]);
+        $step = explode(":", $studentCode);
         $step = explode("$methodname[0]", $step[1]);
         preg_match('#\((.*?)\)#', $step[1], $parenth);
         $argues = explode(",", $parenth[1]);
@@ -113,14 +113,29 @@
                     $replace = str_replace($str,$op,$reqarray[$i]);
                     $reqarray[$i] = $replace;
                     }
-            }      
+            }
+        //hard-code prevention, ensures function call is printed
+        $temp = $studentCode;
+        $step = explode("def ", $temp);
+        $methodname = explode("(", $step[1]); 
+        $step = explode("$methodname[0]", $step[1]);
+        $last = sizeof($step) - 2;
+        $varname = explode("=", $step[$last]); 
+        $last = sizeof($varname) - 2;
+        $step = explode("\n", $varname[$last]);
+        $last = sizeof($step)-1;
+        $varname = str_replace(" ","",$step[$last]);
+        $check = explode("$methodname[0]", $studentCode);
+        $last = sizeof($check)-1;
+        $occur = substr_count($check[1], $varname);
+        
         if($answers[$i] == 'null'){
             $dubpoints = $points * 2;
             $three = "> (-$dubpoints points) Unable to execute code in answer #$n";
             array_push($errors, $three);
         } else if($answers[$i] == $op && strpos($studentCode, "print("$op")" === false
                  && strpos($studentCode, "return $op") === false && $givenArgCount == sizeof($argues)
-                 || $answers[$i] == -1.1){
+                 && $occur < 2 || $answers[$i] == -1.1){
             $grade += $dubpoints;
         } else{
             $four = "> (-$points points) Incorrect output in answer #$n";
