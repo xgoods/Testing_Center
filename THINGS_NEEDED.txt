@@ -6,7 +6,7 @@ teacher's equations
 
 Kevin
 ---------------
-
+1) test cases for teacher input
 
 
 
