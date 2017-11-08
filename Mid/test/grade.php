@@ -59,7 +59,8 @@
             $reqarray[$i] = str_replace("var$j", "$argues[$x]", "$reqarray[$i]");
         }
          for($g = 2; $g <= $givenArgCount; $g++){
-                if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE){
+                if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $reqarray[$i], $match) !== FALSE &&
+                  $answers[$i] !== 'null'){
                 switch($match[2]){
                     case '+':
                         $op = $match[1]+$match[3];
