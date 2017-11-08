@@ -51,7 +51,7 @@
          }
         //***check for successful execution/return value - '10 points max per q'
          $op = "var1+var2+var3"; //temp var, will be stored equation'
-         if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $argues[1], $match) !== FALSE &&
+         if(preg_match('/(\d+)(?:\s*)([\+\-\*\^\<\>\/])(?:\s*)(\d+)/', $argues[1], $mat) !== FALSE &&
             $answers[$i] !== 'null'){
              $op = implode('', $argues);
          }
