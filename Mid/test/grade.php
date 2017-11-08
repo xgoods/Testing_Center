@@ -117,7 +117,7 @@
             $dubpoints = $points * 2;
             $three = "> (-$dubpoints points) Unable to execute code in answer #$n";
             array_push($errors, $three);
-        } else if($answers[$i] == $op){
+        } else if($answers[$i] == $op || $answers[$i] == -1.1){
             $grade += $dubpoints;
         } else{
             $four = "> (-$points points) Incorrect output in answer #$n";
