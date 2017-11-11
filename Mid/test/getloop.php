@@ -54,9 +54,14 @@ $b = $n + 2;
             }
             if($keyword !== "if"){
                 $studentreplace = $forcheck[0];
-                                
+
+                if($m == 0){
+                  $check = "    ";
+                } else{
+                  $check = '/^[A-Za-z].*$/';
+                }               
                 for($i = 0;$i < sizeof($forcheck);$i++){
-                    if(preg_match("    ",$forcheck[$i])){
+                    if(preg_match("$check",$forcheck[$i])){
                         if(!preg_match("     ",$forcheck[$i])){
                             $replacevar = $forcheck[$i];
                             break;
@@ -73,8 +78,6 @@ $b = $n + 2;
                 $loops[$m] = "    if$step[0]-1";
             }
         }
-        
-        $temp = explode(" ",$loops[1]);
         
         //execute teachers, replace code, then test students code
         file_put_contents('test.py', $teachers);
@@ -101,7 +104,7 @@ $b = $n + 2;
             $studentop = `python test.py`;
           }
          
-        echo "$studenttest\n";   
+        echo "$teacherop\n";   
         echo "$studentop\n";
 } 
      
