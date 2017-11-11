@@ -62,7 +62,8 @@ $b = $n + 2;
                 }               
                 for($i = 0;$i < sizeof($forcheck);$i++){
                     if(preg_match("$check",$forcheck[$i])){
-                        if(!preg_match("     ",$forcheck[$i])){
+                        if(!preg_match("     ",$forcheck[$i]) 
+                           && !in_array($keywords, array("for", "if", "else", "while"))){
                             $replacevar = $forcheck[$i];
                             break;
                         }
