@@ -17,8 +17,8 @@ if (mysqli_connect_errno()) {
 		$args = $_POST['args'];
     $return = $_POST['returns'];
     $ranswer = "place hold";//$_POST['ranswer'];
-
-		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$ranswer');");
+    $difficulty = "hold";//$_POST['difficulty'];
+		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$ranswer','$difficulty');");
 		if (!$result) {
 			$status = -1;
 			$message = mysqli_error($db);
@@ -32,6 +32,6 @@ if (mysqli_connect_errno()) {
 			"status" => $status,
 			"message" => $message)));
     echo $je;
-//	 }
+//	}
 //}
 ?>
