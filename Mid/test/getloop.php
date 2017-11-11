@@ -26,7 +26,7 @@ $vars = array();
 
 
 for($n = 0; $n < sizeof($briansarray)-5; $n++){
-$b = $n + 2;
+        $b = $n + 2;
         
         //check to see necessary loops/statements
         $directions = "for loop";
@@ -93,10 +93,15 @@ $b = $n + 2;
         }
         $studenttest = str_replace("$loops[0]","$loops[1]",$teachers);
         file_put_contents('test.py', $studenttest);
-          if(`python test.py` == null){
-            $studentop = "fuck u m8";
-          } else{
+          if(`python test.py` == null || $count == '0'){
+            $results[$n] = 'null';
             $studentop = `python test.py`;
+          } elseif(`python test.py` == $teacherop){
+              $results[$n] = 'perf';
+              $studentop = `python test.py`;
+          } else{
+              $results[$n] = 'ok';
+              $studentop = `python test.py`;
           }
          
         echo "$teacherop\n";   
