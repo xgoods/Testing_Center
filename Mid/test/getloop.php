@@ -91,7 +91,7 @@ for($n = 0; $n < sizeof($briansarray)-5; $n++){
                     $loops[0] = str_replace(" $studvar","$studentreplace",$loops[0]);
                 }
         }
-        $studenttest = str_replace("$loops[0]","$loops[1]",$teachers);
+        $studenttest = str_replace("$loops[0]","$loops[1]",$teachers,$count);
         file_put_contents('test.py', $studenttest);
           if(`python test.py` == null || $count == '0'){
             $results[$n] = 'null';
