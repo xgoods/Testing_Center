@@ -54,14 +54,9 @@ $b = $n + 2;
             }
             if($keyword !== "if"){
                 $studentreplace = $forcheck[0];
-
-                if($m == 0){
-                  $check = "    ";
-                } else{
-                  $check = '/^[A-Za-z].*$/';
-                }               
+              
                 for($i = 0;$i < sizeof($forcheck);$i++){
-                    if(preg_match("$check",$forcheck[$i])){
+                    if(preg_match("/^[A-Za-z].*$|    /i", $forcheck[$i])){
                         if(!preg_match('/for|while|if|else|     /i', $forcheck[$i])){
                             $replacevar = $forcheck[$i];
                             break;
