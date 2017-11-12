@@ -8,11 +8,7 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-        $result = mysqli_query($db, "SELECT * FROM Bank;");
-/*      if (!isset($data['type'])) {
-            $result = mysqli_query($db, "SELECT * FROM Bank;");
-        }
-*/
+        $result = mysqli_query($db, "SELECT qid,question,type,difficulty,points FROM Bank;");
         if (!$result) {
             mysqli_close($db);
             die(json_encode(array(
