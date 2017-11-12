@@ -1,0 +1,29 @@
+easy:
+1) Write an if/else function that takes 2 args and compares them and returns the larger one
+
+
+
+2) write a while program that takes one argument, an array, and adds elements
+
+
+3) write an if else program that takes one arg, checks if it is positive or negative, else 0
+
+
+med:
+1) write a program that returns largest integer in an array
+
+
+2) write a program that takes 2 args, and keeps adding N in a while loop and returns a once a > b. if a already > b, return a
+
+
+3) 
+
+
+hard:
+1) operator
+
+
+2) 
+
+
+3)
