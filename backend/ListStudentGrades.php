@@ -8,17 +8,19 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
+      
       $contents = file_get_contents('php://input');
       $a = explode(" ",$contents);
       $uid = $a[0];
       $eid = $a[1];
+
       $a = mysqli_query($db,"SELECT grade FROM Grades WHERE (Grades.release='r' AND eid=$eid);");
       $exams = mysqli_fetch_array($a);
       if ($exams) {
-            $result = mysqli_query($db,"SELECT grade FROM Grades WHERE (uid='$uid' AND eid='$eid');");
+            $result = mysqli_query($db,"SELECT grade,comments FROM Grades WHERE (uid='$uid' AND eid='$eid');");
             $return = array();
             while ($row = mysqli_fetch_assoc($result)) {
-                $return[] = $row['grade'];
+                $return[] = $row;
             }
             mysqli_close($db);
             $je = (json_encode($return));
