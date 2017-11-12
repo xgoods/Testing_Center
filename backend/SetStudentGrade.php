@@ -14,6 +14,22 @@ if (mysqli_connect_errno()) {
 		$result = mysqli_query($db,"INSERT INTO Grades(uid, eid, grade) VALUES ('$uid','$eid','$grade');");
 		die(json_encode(array(
 			"status" => 1)));
+    
+		$points = $_POST['points'];
+		$comments = $_POST['comments'];
+    $a = mysqli_fetch_array(mysqli_query($db, "SELECT qid FROM Exams WHERE (eid='$eid');"));
+    while ($row = mysqli_fetch_assoc($a)) {
+        $qid = $row['qid'];
+		    $b = mysqli_query($db, "INSERT INTO Students (uid,eid,qid,points,comments) VALUES ('$uid','$eid','$qid','$points','$comments');");
+    }
+    if (!$result) {
+			$status = -1;
+			$message = mysqli_error($db);
+		}
+		else {
+			$status = 1;
+			$message = "Question successfully graded";
+		}
 //	}
 //}
 ?>
