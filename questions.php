@@ -1,5 +1,5 @@
 easy:
-1) Write an if/else function that takes 2 args and compares them and returns the larger one
+//1) Write an if/else function that takes 2 args and compares them and returns the larger one
 
 def compare(a,b):
     if a > b:
@@ -10,7 +10,7 @@ def compare(a,b):
 compare = compare(2,3)
 print(compare)  
 
-2) write a program that takes 3 args, a,b,N, and keeps adding N in a while loop and returns a once a > b. if a already > b, return a
+//2) write a program that takes 3 args, a,b,N, and keeps adding N in a while loop and returns a once a > b. if a already > b, //return a
 
 def whileadd(a,b,N):
     while a <= b:
@@ -21,7 +21,7 @@ output = whileadd(1,5,2)
 print(output)
 
 
-3) write an if else program that takes one arg, checks if it is positive or negative, else returns -1
+//3) write an if else program that takes one arg, checks if it is positive or negative, else returns -1
 def posorneg(a):
     if a > 0:
         return "positive"
@@ -33,7 +33,7 @@ addarray = posorneg(-1)
 print(addarray)
 
 med:
-1) write a program that takes one arg, an array, returns largest integer in an array
+//1) write a program that takes one arg, an array, returns largest integer in an array
 large = [3,4,1,6]
 def largest(a):
     curr = 0
@@ -44,7 +44,7 @@ def largest(a):
 output = largest(large)
 print(output)
 
-2) write a while program that takes one argument, an array, and adds elements
+//2) write a while program that takes one argument, an array, and adds elements
 add = [1,2,3,4,5]
 def addarray(add):
     total = 0
@@ -60,7 +60,7 @@ print(output)
 
 
 hard:
-1) operator
+//1) operator
 
 def operation(op,a,b):
     if op == "+":
