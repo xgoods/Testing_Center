@@ -11,16 +11,16 @@ if (mysqli_connect_errno()) {
 		$eid = $_POST['eid'];
 		$uid = $_POST['uid'];
     $grade = $_POST['grade'];
-		$result = mysqli_query($db,"INSERT INTO Grades(uid, eid, grade) VALUES ('$uid','$eid','$grade');");
+    $comments = $_POST['comments'];
+		$result = mysqli_query($db,"INSERT INTO Grades(uid, eid, grade,comments) VALUES ('$uid','$eid','$grade','$comments');");
 		die(json_encode(array(
 			"status" => 1)));
-    
-		$points = $_POST['points'];
-		$comments = $_POST['comments'];
-    $a = mysqli_fetch_array(mysqli_query($db, "SELECT qid FROM Exams WHERE (eid='$eid');"));
+/*    
+		$points = $_POST['points'];		
+    $a = mysqli_fetch_array(mysqli_query($db, "SELECT qid FROM Exams WHERE (eid='$eid');")); 
     while ($row = mysqli_fetch_assoc($a)) {
-        $qid = $row['qid'];
-		    $b = mysqli_query($db, "INSERT INTO Students (uid,eid,qid,points,comments) VALUES ('$uid','$eid','$qid','$points','$comments');");
+       $qid = $row['qid'];
+		    $b = mysqli_query($db, "INSERT INTO Students (uid,eid,qid,comments) VALUES ('$uid','$eid','$qid','$points','$comments');");
     }
     if (!$result) {
 			$status = -1;
@@ -30,6 +30,7 @@ if (mysqli_connect_errno()) {
 			$status = 1;
 			$message = "Question successfully graded";
 		}
+*/
 //	}
 //}
 ?>
