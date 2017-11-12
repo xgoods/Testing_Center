@@ -23,7 +23,6 @@ print(ness)';
 $loops = array();
 $vars = array();
 
-
 for($n = 0; $n < sizeof($briansarray)-5; $n++){
         $b = $n + 2;
         
@@ -96,8 +95,7 @@ for($n = 0; $n < sizeof($briansarray)-5; $n++){
         
         //execute teachers, replace code, then test students code
         file_put_contents('test.py', $teachers);
-        $teacherop = `python test.py`;
-        
+        $teacherop = `python test.py`;    
         
         for($m = 0; $m < 2; $m++){
                 if($m == 0){
