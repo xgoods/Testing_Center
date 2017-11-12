@@ -10,7 +10,8 @@ def compare(a,b):
 compare = compare(2,3)
 print(compare)  
 
-//2) write a program that takes 3 args, a,b,N, and keeps adding N in a while loop and returns a once a > b. if a already > b, //return a
+//2) write a program that takes 3 args, a,b,N, and keeps adding N 
+in a while loop and returns a once a > b. if a already > b, return a
 
 def whileadd(a,b,N):
     while a <= b:
