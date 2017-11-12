@@ -13,7 +13,7 @@ med:
 1) write a program that returns largest integer in an array
 
 
-2) write a program that takes 2 args, and keeps adding N in a while loop and returns a once a > b. if a already > b, return a
+2) write a program that takes 3 args, a,b,N, and keeps adding N in a while loop and returns a once a > b. if a already > b, return a
 
 
 3) 
