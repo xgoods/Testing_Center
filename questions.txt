@@ -62,6 +62,19 @@ print(output)
 hard:
 1) operator
 
+def operation(op,a,b):
+    if op == "+":
+        return a+b
+    if op == "-":
+        return a-b
+    if op == "/":
+        return a/b
+    else:
+        return -1
+            
+output = operation("z",2,3)
+print(output)
+
 
 2) 
 
