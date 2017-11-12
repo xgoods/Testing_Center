@@ -58,7 +58,6 @@ for($n = 0; $n < sizeof($briansarray)-5; $n++){
             if($temp == $briansarray[$b] && !$return){
                 for($x = 0;$x < sizeof($forcheck);$x++){
                     if(preg_match("/     /", $forcheck[$x])){
-                        echo "UH OH\n";
                         if(preg_match("/         /", $forcheck[$x])){
                             $forcheck[$i] = trim($forcheck[$x]);
                             $forcheck[$i] = "        $forcheck[$x]";
@@ -125,7 +124,7 @@ for($n = 0; $n < sizeof($briansarray)-5; $n++){
           }
         $outresult = implode('~',$results);
         echo "$outresult\n";
-        echo "$studenttest\n";   
+        echo "$studentop\n";   
         echo "$teacherop\n";
 } 
      
