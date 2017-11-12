@@ -22,13 +22,13 @@ if (mysqli_connect_errno()) {
         
         $return = array();
         while ($row = mysqli_fetch_assoc($result)) {
-//            $return[] = array($row['qid'] => $row['question']);
-            $return[] = $row['question'];
+            $return[] = array($row['qid'] => $row);
+//            $return[] = $row['question'];
         }
 //        $return['status'] = 1;
         mysqli_close($db);
         $je = (json_encode($return));
         echo $je;
-//     }
+//    }
 //}
 ?>
