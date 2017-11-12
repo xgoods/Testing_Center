@@ -1,9 +1,9 @@
 <?php
     error_reporting(0);
     //trial students code first-fourth
-    $first = 'def operation(b,a):
-    for dixx in coxrange(3,6):
-        return x';
+    $first = 'def operation(a,b):
+      for z in zrange(3,6):
+         return xz';
     
 
     $second = 'def test2(one,two,three): test2(9,3,5); return';
@@ -15,7 +15,6 @@
     $teachers = 'def operation(a,b):
     for x in range(3,6):
         return x
-    
 ness = operation(1,2)
 print(ness)';
     
@@ -49,20 +48,41 @@ for($n = 0; $n < sizeof($briansarray)-5; $n++){
             
             if($keyword == "if"){
                 $step = explode("-1", $step[1]); 
+                $forcheck = explode(PHP_EOL,$step[1]);
             } else{
                 $forcheck = explode(PHP_EOL,$step[1]);
+            }
+            
+            //edit spacing for grading if student uses executable spacing
+            file_put_contents('test.py', $temp);
+            exec('python test.py', $output, $return);
+            if($temp == $briansarray[$b] && !$return){
+                for($x = 0;$x < sizeof($forcheck);$x++){
+                    if(preg_match("/     /", $forcheck[$x])){
+                        echo "UH OH\n";
+                        if(preg_match("/         /", $forcheck[$x])){
+                            $forcheck[$i] = trim($forcheck[$x]);
+                            $forcheck[$i] = "        $forcheck[$x]";
+                        } else{
+                            $forcheck[$i] = trim($forcheck[$x]);
+                            $forcheck[$i] = "    $forcheck[$x]";
+                        }
+                    }
+                }
             }
             if($keyword !== "if"){
                 $studentreplace = $forcheck[0];
               
-                for($i = 0;$i < sizeof($forcheck);$i++){
-                    if(preg_match("/^[A-Za-z].*$|    /i", $forcheck[$i])){
+                for($i = 0;$i < sizeof($forcheck);$i++){     
+                    if(preg_match("/^[A-Za-z].*$/i", $forcheck[$i]) 
+                       || preg_match("/    /", $forcheck[$i])
+                       && preg_match("/([a-z])+$/i", $forcheck[$i])){
                         if(!preg_match('/for|while|if|else|     /i', $forcheck[$i])){
                             $replacevar = $forcheck[$i];
                             break;
                         }
                     }
-                }                
+                }      
                 if (preg_match('/[A-Za-z0-9]+/',$replacevar)) {
                      $step = explode("$replacevar", $step[1]);
                      $loops[$m] = "    $keyword$step[0]";
@@ -91,9 +111,11 @@ for($n = 0; $n < sizeof($briansarray)-5; $n++){
                     $loops[0] = str_replace(" $studvar","$studentreplace",$loops[0]);
                 }
         }
-        $studenttest = str_replace("$loops[0]","$loops[1]",$teachers,$count);
+
+        $studenttest = str_replace("$loops[1]","$loops[0]\n",$teachers,$count);
         file_put_contents('test.py', $studenttest);
-          if(`python test.py` == null || $count == '0'){
+        exec('python test.py', $output, $return);
+          if($return || $count == '0'){
             $results[$n] = 'null';
             $studentop = `python test.py`;
           } elseif(`python test.py` == $teacherop){
@@ -103,9 +125,10 @@ for($n = 0; $n < sizeof($briansarray)-5; $n++){
               $results[$n] = 'ok';
               $studentop = `python test.py`;
           }
-         
-        echo "$teacherop\n";   
-        echo "$studentop\n";
+        $outresult = implode('~',$results);
+        echo "$outresult\n";
+        echo "$studenttest\n";   
+        echo "$teacherop\n";
 } 
      
 ?>
