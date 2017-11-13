@@ -14,12 +14,12 @@ print(compare)
 //2) write a program that takes 3 args, a,b,N, and keeps adding N 
 in a while loop and returns a once a > b. if a already > b, return a
 
-def whileadd(a,b,N):
+def add(a,b,N):
     while a <= b:
         a = a + N
     return a
     
-output = whileadd(1,5,2)
+output = add(1,5,2)
 print(output)
 
 
@@ -53,7 +53,6 @@ def addarray(add):
     for i in range(len(add)):
         total = total + add[i]
     return total
-    
 output = addarray(add)
 print(output)
 
