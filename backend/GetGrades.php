@@ -8,8 +8,11 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-		$curreid = $_POST['eid'];
-		$grades = mysqli_query($db,"SELECT * FROM Grades WHERE eid = $curreid;");
+		$contents = file_get_contents('php://input');
+    $arr = explode(" ",$contents);
+    $uid = $arr[0];
+    $eid = $arr[1];
+		$grades = mysqli_query($db,"SELECT * FROM Grades WHERE (eid = $eid AND uid = $uid);");
 		$return = array();
 		if ($grades != NULL) {
 			while ($currgrade = mysqli_fetch_array($grades)) {
