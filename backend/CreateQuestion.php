@@ -11,14 +11,18 @@ if (mysqli_connect_errno()) {
 		$qid = mysqli_query($db, "SELECT COUNT(*) FROM Bank;");
 		$qid = mysqli_fetch_array($qid);
 		$question = $_POST['question'];
-		$type = "open";
+		$type = $_POST['type'];
 		$newqid = $qid[0];
 		$fname = $_POST['functionName'];
 		$args = $_POST['args'];
     $return = $_POST['returns'];
-    $ranswer = "place hold";//$_POST['ranswer'];
-    $difficulty = "hold";//$_POST['difficulty'];
-		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$ranswer','$difficulty');");
+    $ranswer = $_POST['ranswer'];
+    $difficulty = $_POST['difficulty'];
+    $points = $_POST['points'];
+    $var1 = $_POST['var1'];
+    $var2 = $_POST['var2'];
+    $var3 = $_POST['var3'];
+		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$ranswer','$difficulty','$points','$var1','$var2','$var3');");
 		if (!$result) {
 			$status = -1;
 			$message = mysqli_error($db);
