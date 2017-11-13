@@ -1,11 +1,12 @@
 easy:
-//1) Write an if/else function that takes 2 args and compares them and returns the larger one
+//1) Write an if/else function that takes 2 args and checks to see if a > b, returns true if it is,
+-1 if it isnt
 
 def compare(a,b):
     if a > b:
-        return a
+        return "true"
     else:
-        return b
+        return -1
     
 compare = compare(2,3)
 print(compare)  
