@@ -31,8 +31,8 @@ def posorneg(a):
         return "negative"
     else:
         return -1
-addarray = posorneg(-1)
-print(addarray)
+output = posorneg(-1)
+print(output)
 
 med:
 //1) write a program that takes one arg, an array, returns largest integer in an array
