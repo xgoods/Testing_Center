@@ -8,10 +8,18 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-        $result = mysqli_query($db,"SELECT * FROM Bank");
+        $eid = $_POST['eid'];
+        
+        $qidarr = mysqli_query($db, "SELECT qid FROM QAA WHERE(eid = '$eid');");
+        
         $return = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-              $return[] = $row['fname'];
+        while ($rowqid = mysqli_fetch_assoc($qidarr)) {
+            $qid = $rowqid['qid'];
+        
+            $qarr = mysqli_query($db,"SELECT points,ranswer FROM Bank WHERE(qid = '$qid')");
+            while ($rowq = mysqli_fetch_assoc($qarr)) {
+                $return[] = $rowq;
+            }
         }
         $return['status'] = 1;
         mysqli_close($db);
