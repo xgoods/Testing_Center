@@ -18,7 +18,7 @@ if (mysqli_connect_errno()) {
         
         $return = array();
         while ($row = mysqli_fetch_assoc($result)) {
-            $return[] = array($row['qid'] => $row);
+            $return[] = $row;
 //            $return[] = $row['question'];
         }
 //        $return['status'] = 1;
