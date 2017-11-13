@@ -9,18 +9,31 @@ if (mysqli_connect_errno()) {
 		"message" => mysqli_connect_error())));
 }
         $eid = $_POST['eid'];
-        
+        $i = 0;
         $qidarr = mysqli_query($db, "SELECT qid FROM QAA WHERE(eid = '$eid');");
-        
-        $return = array();
+        $aarr = array();
+        $parr = array();
         while ($rowqid = mysqli_fetch_assoc($qidarr)) {
             $qid = $rowqid['qid'];
         
-            $qarr = mysqli_query($db,"SELECT points,ranswer FROM Bank WHERE(qid = '$qid')");
-            while ($rowq = mysqli_fetch_assoc($qarr)) {
-                $return[] = $rowq;
-            }
+//            $qarr = mysqli_query($db,"SELECT points,ranswer FROM Bank WHERE(qid = '$qid')");
+            $ar = mysqli_query($db,"SELECT ranswer FROM Bank WHERE(qid = '$qid')");
+            $aar = mysqli_fetch_array($ar);
+            $aarr[] = $arr[0];
+            $pr = mysqli_query($db,"SELECT points FROM Bank WHERE(qid = '$qid')");
+            $par = mysqli_fetch_array($pr);
+            $parr[] = $par[0];
+            
+            $i = $i+1;
+//            while ($rowq = mysqli_fetch_assoc($qarr)) {
+//                $return[] = $rowq;
+//            }
         }
+        $ranswer = implode("~",$aarr);
+        $points = implode("~",$parr);
+        $return = array();
+        $return['tanswer'] = $ranswer;
+        $return['points'] = $points;
         $return['status'] = 1;
         mysqli_close($db);
         $je = (json_encode($return));
