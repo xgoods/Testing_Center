@@ -17,7 +17,7 @@ if (mysqli_connect_errno()) {
         }
         $return = array();
         while ($row = mysqli_fetch_assoc($result)) {
-            $return[] = $row['name'];
+            $return[$row['eid']] = $row['name'];
         }
 //        $return['status'] = 1;
         mysqli_close($db);
