@@ -1,8 +1,7 @@
 <?php
     error_reporting(0);
    
-    $argone = urldecode($argv[1]);
-    $briansarray = explode('~',$argone);   
+    $briansarray = explode('~',$argv[1]);   
     
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");
@@ -122,7 +121,7 @@
         $db = curl_init();
         curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/grade.php");
         curl_setopt($db, CURLOPT_POST, 1);
-        curl_setopt($db, CURLOPT_POSTFIELDS, "briansarray=$argone&results=$outresult&points=$points&args=$argcount&funcname=$funcname");   
+        curl_setopt($db, CURLOPT_POSTFIELDS, "briansarray=$argv[1]&results=$outresult&points=$points&args=$argcount&funcname=$funcname");   
         curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
         $dbexec = curl_exec($db); 
         curl_close($db);     
