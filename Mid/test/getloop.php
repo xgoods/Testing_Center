@@ -1,19 +1,23 @@
 <?php
     error_reporting(0);
    
+    $briansarray = explode('~',$argv[1]);   
+    
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");
     curl_setopt($db, CURLOPT_POST, 1);
-    curl_setopt($db, CURLOPT_POSTFIELDS, "eid=1");   
+    curl_setopt($db, CURLOPT_POSTFIELDS, "eid=$briansarray[1]");   
     curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
     $dbexec = curl_exec($db); 
     curl_close($db);     
     $obj = json_decode($dbexec);
-
-    $briansarray = explode('~',$argv[1]);   
+    
     $teachinput = $obj->{'tanswer'};
     $teachinput = explode('~',$teachinput);
+    $argcount = $obj->{'args'};
+    $funcname = $obj->{'fname'};
     $points = $obj->{'points'};
+    $directions = $obj->{'type'};
     $directions = explode('~',$argv[2]);
     
     $loops = array();
@@ -23,10 +27,10 @@
         
         //check to see necessary loops/statements
         
-        if(strpos($directions[$n], "for loop") !== false){
+        if(strpos($directions[$n], "For Loop") !== false){
             $separator = "for";
             $keyword = "for";
-        } elseif(strpos($directions[$n], "while loop") !== false){
+        } elseif(strpos($directions[$n], "While Loop") !== false){
                 $separator = "while";
                 $keyword = "while";
             } else{
@@ -45,17 +49,14 @@
                   } 
                 //isolate loops/statements
                 $step = explode("$separator", $temp); 
-
                 if($separator == '):'){
                     $step = explode("-1", $step[1]); 
                     $forcheck = explode(PHP_EOL,$step[1]);
                 } else{
                     $forcheck = explode(PHP_EOL,$step[1]);
                 }
-
                 if($separator !== "):"){
                     $studentreplace = $forcheck[0];
-
                     //check to see if student attempts hardcode
                     for($i = 0;$i < sizeof($forcheck);$i++){     
                         if(preg_match("/^[A-Za-z].*$/i", $forcheck[$i]) 
@@ -84,16 +85,13 @@
                 }       
       
             }
-
             //execute teachers, replace code, then test students code
             file_put_contents('test.py', $teachinput[$n]);
             $teacherop = `python test.py`;    
-
             if($separator == 'for'){
                 $teehee = explode(PHP_EOL,$loops[0]);
                 $studentfor = preg_split('/\s+/', $teehee[0]);
                 $teacherfor = preg_split('/\s+/', $studentreplace);
-
                 $var[0] = $studentfor[2];
                 $var[1] = $studentfor[4];   
                 //replace students variables with teachers
@@ -115,17 +113,17 @@
         } else{
             $results[$n] = 'null';
         }
-        $outresult = implode('~',$results);
-        echo "$outresult\n";   
+        $outresult = implode('~',$results);  
       //  echo "$loops[1]\n";
 } 
+        echo "$outresult\n"; 
         
-       /* $db = curl_init();
+        $db = curl_init();
         curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/grade.php");
         curl_setopt($db, CURLOPT_POST, 1);
-        curl_setopt($db, CURLOPT_POSTFIELDS, "results=$outresult&points=$points");   
+        curl_setopt($db, CURLOPT_POSTFIELDS, "briansarray=$argv[1]&results=$outresult&points=$points&args=$argcount&funcname=$funcname");   
         curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
         $dbexec = curl_exec($db); 
-        curl_close($db);     */
-
+        curl_close($db);     
+        echo $dbexec;
 ?>
