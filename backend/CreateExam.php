@@ -1,6 +1,4 @@
 <?php
-//class Login {
-//	public function post($data,$db) {
 $db=mysqli_connect("sql2.njit.edu","ad379","admin","ad379");
 if (mysqli_connect_errno()) {
 	http_response_code(500);
@@ -24,6 +22,4 @@ if (mysqli_connect_errno()) {
 		die(json_encode(array(
 			"status" => 1,
 			"message" => "Exam successfully created")));
-//	}
-//}
 ?>
