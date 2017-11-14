@@ -1,6 +1,4 @@
-   <?php
-//class Login {
-//	public function post($data,$db) {
+<?php
 $db=mysqli_connect("sql2.njit.edu","ad379","admin","ad379");
 if (mysqli_connect_errno()) {
 	http_response_code(500);
@@ -26,6 +24,4 @@ if (mysqli_connect_errno()) {
     mysqli_close($db);
     $je = (json_encode($return));
     echo $je;
-//	}
-//}
 ?>
