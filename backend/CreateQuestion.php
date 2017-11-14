@@ -1,6 +1,4 @@
 <?php
-//class CreateQuestion {
-//	public function post($data,$db) {
 $db=mysqli_connect("sql2.njit.edu","ad379","admin","ad379");
 if (mysqli_connect_errno()) {
 	http_response_code(500);
@@ -36,6 +34,4 @@ if (mysqli_connect_errno()) {
 			"status" => $status,
 			"message" => $message)));
     echo $je;
-//	}
-//}
 ?>
