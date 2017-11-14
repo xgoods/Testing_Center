@@ -77,7 +77,22 @@ output = operation("z",2,3)
 print(output)
 
 
-2) 
+2) finds largest and smallest in an array and subtracts largest frmo smallest
+
+minimax = [3,2,1,4,5]
+def minmax(minmaxarray):
+    maxi = minimax[0]
+    mini = minimax[0]
+    for i in range(len(minimax)):
+        if minimax[i] > maxi:
+            maxi = minimax[i]
+    for i in range(len(minimax)):
+        if minimax[i] < mini:
+            mini = minimax[i]
+    return maxi - mini
+            
+output = minmax(minimax)
+print(output)
 
 
 3)
