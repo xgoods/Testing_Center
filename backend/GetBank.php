@@ -6,22 +6,19 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-    $eid= file_get_contents('php://input');
-//		$eid = $_POST['examSelect'];
-//    $eid = '0';
-		$return = array();
-		$exams = mysqli_query($db, "SELECT Bank.question FROM ((SELECT * FROM QAA WHERE (QAA.eid='$eid')) AS T1) INNER JOIN (Bank) ON (Bank.qid = T1.qid);");
-    if (!$exams) {
-			die(json_encode(array(
-				"status" => -1,
-				"message" => mysqli_error($db))));
-		}
-        while ($row = mysqli_fetch_assoc($exams)) {
-//            $return[] = array($row['qid'] => $row['question']);
-            $return[] =  array("eid" => $eid, "question" => $row['question']);
+        $result = mysqli_query($db, "SELECT qid,question,type,difficulty,points FROM Bank;");
+        if (!$result) {
+            mysqli_close($db);
+            die(json_encode(array(
+                "status" => -1,
+                "message" => mysqli_connect_error())));
         }
-//		$return['status'] = 1;
-    mysqli_close($db);
-    $je = (json_encode($return));
-    echo $je;
+        
+        $return = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $return[] = $row;
+        }
+        mysqli_close($db);
+        $je = (json_encode($return));
+        echo $je;
 ?>
