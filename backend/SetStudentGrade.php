@@ -11,11 +11,11 @@ if (mysqli_connect_errno()) {
 		$eid = $_POST['eid'];
 		$uid = $_POST['uid'];
     $grade = $_POST['grade'];
-    $comments = $_POST['comments'];
+    $comments = $_POST['errors'];
 		$result = mysqli_query($db,"INSERT INTO Grades(uid, eid, grade,comments) VALUES ('$uid','$eid','$grade','$comments');");
 		die(json_encode(array(
 			"status" => 1)));
-/*    
+/*  
 		$points = $_POST['points'];		
     $a = mysqli_fetch_array(mysqli_query($db, "SELECT qid FROM Exams WHERE (eid='$eid');")); 
     while ($row = mysqli_fetch_assoc($a)) {
