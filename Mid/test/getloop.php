@@ -18,7 +18,7 @@
     $funcname = $obj->{'fname'};
     $points = $obj->{'points'};
     $directions = $obj->{'type'};
-    $directions = explode('~',$argv[2]);
+    $directions = explode('~',$directions);
     
     $loops = array();
     $vars = array();
