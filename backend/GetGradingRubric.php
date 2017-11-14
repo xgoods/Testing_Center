@@ -9,32 +9,47 @@ if (mysqli_connect_errno()) {
 		"message" => mysqli_connect_error())));
 }
         $eid = $_POST['eid'];
-        $i = 0;
         $qidarr = mysqli_query($db, "SELECT qid FROM QAA WHERE(eid = '$eid');");
+        $return = array();
         $aarr = array();
         $parr = array();
+        $varr = array();
+        $farr = array();
+        $tarr = array();
         while ($rowqid = mysqli_fetch_assoc($qidarr)) {
             $qid = $rowqid['qid'];
         
-//            $qarr = mysqli_query($db,"SELECT points,ranswer FROM Bank WHERE(qid = '$qid')");
+//           $qarr = mysqli_query($db,"SELECT points,ranswer FROM Bank WHERE(qid = '$qid')");
             $ar = mysqli_query($db,"SELECT ranswer FROM Bank WHERE(qid = '$qid')");
-            $aar = mysqli_fetch_array($ar);
-            $aarr[] = $arr[0];
+            $arr = mysqli_fetch_assoc($ar);
+            $aarr[] = $arr['ranswer'];
             $pr = mysqli_query($db,"SELECT points FROM Bank WHERE(qid = '$qid')");
             $par = mysqli_fetch_array($pr);
-            $parr[] = $par[0];
-            
-            $i = $i+1;
+            $parr[] = $par['points'];
+            $vr = mysqli_query($db,"SELECT args FROM Bank WHERE(qid = '$qid')");
+            $var = mysqli_fetch_array($vr);
+            $varr[] = $var['args'];
+            $fr = mysqli_query($db,"SELECT fname FROM Bank WHERE(qid = '$qid')");
+            $far = mysqli_fetch_array($fr);
+            $farr[] = $far['fname'];
+            $tr = mysqli_query($db,"SELECT type FROM Bank WHERE(qid = '$qid')");
+            $tar = mysqli_fetch_array($tr);
+            $tarr[] = $tar['type'];
 //            while ($rowq = mysqli_fetch_assoc($qarr)) {
 //                $return[] = $rowq;
 //            }
         }
         $ranswer = implode("~",$aarr);
         $points = implode("~",$parr);
-        $return = array();
+        $args = implode("~",$varr);
+        $fname = implode("~",$farr);
+        $type = implode("~",$tarr);
+
         $return['tanswer'] = $ranswer;
         $return['points'] = $points;
-        $return['status'] = 1;
+        $return['args'] = $args;
+        $return['fname'] = $fname;
+        $return['type'] = $type;
         mysqli_close($db);
         $je = (json_encode($return));
         echo $je;
