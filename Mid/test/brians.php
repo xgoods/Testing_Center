@@ -6,8 +6,7 @@
     $dbexec = curl_exec($db); 
     curl_close($db); 
     
-    //replace $briansarray, its the array with uid,eid,and student answers;
-    $briansarray = array("student1","0","if","while","if","for");
+    //replace $briansarray, its the array with uid,eid,and student answers
     $briansarray = implode('~',$briansarray);
     
     file_put_contents('test.php',$dbexec);
