@@ -1,4 +1,8 @@
 <?php
+/*
+Accepts array in format
+{'examName'=>(variable for name of exam), 'questions'=>(imploded array of questions)}
+*/ 
 $db=mysqli_connect("sql2.njit.edu","ad379","admin","ad379");
 if (mysqli_connect_errno()) {
 	http_response_code(500);
