@@ -1,23 +1,20 @@
 <?php
     
-    $grade = $i = 0;
-    $givenArgCount = 3;
-    //**GET IMPLODED ARRAY $maxpoints = $_POST['points'];
-    $maxpoints = explode('~',$_POST['points']);
-    //assign student input to array
-    $data = $_POST['code'];
-    $temparr = explode("~", $data);
-    $data = $_POST['answers'];
-    $answers = explode("~",$data);
-    $arr = array($temparr[2], $temparr[3], $temparr[4], $temparr[5]);
+    $grade = $i = $y = 0;
+    $x = 2;
+    $givenArgCount = explode('~',$_POST['args']);
+    $maxpoints = explode('~',$_POST['points']); 
+    $methodname = explode('~',$_POST['funcname']); 
+    $temparr = explode("~", $_POST['briansarray']);
+    $answers = explode("~",$_POST['results']);
     $errors = array();
+    $arr = array();
     
-    //get array of rules from db
-    $db = curl_init();
-    curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");  
-    curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
-    $dbexec = curl_exec($db); 
-    curl_close($db);
+    while($temparr[$x] !== null){
+        $arr[$y] = $temparr[$x]; 
+        $x += 1;
+        $y += 1;
+    }   
       
     while(list($key, $studentCode) = each($arr)){
         $n = $i + 1;          
@@ -31,14 +28,14 @@
         preg_match('#\((.*?)\)#', $step[1], $parenth);
         $argues = explode(",", $parenth[1]);
         //***check for properly written func name 
-        if(strpos($studentCode, "def $methodname[0]") === false){
-            $one = "> (-$points points) Did not name the function '$methodname[0]' in answer #$n";
+        if(strpos($studentCode, "def $methodname[$i]") === false){
+            $one = "> (-$points points) Did not name the function '$methodname[$i]' in answer #$n";
             array_push($errors, $one);
         } else{
             $grade += $points;
         }
          //***check for correct number of arguments 
-         if(sizeof($argues) == $givenArgCount){
+         if(sizeof($argues) == $givenArgCount[$i]){
             $grade += $points;
          } else{
             $two = "> (-$points points) Incorrect number of arguments in answer #$n";
@@ -60,23 +57,22 @@
          $argues = array();
          $i += 1; 
     }
-
     //send to backend
     $errors = implode("~", $errors);
     $data = array('uid'=>$temparr[0],
                   'eid'=>$temparr[1],
                   'grade'=>$grade);
               
-    $data = http_build_query($data); /*
+    $data = http_build_query($data); 
     $ch = curl_init(); 
     curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, "$data&errors=$errors");   
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $gradecurl = curl_exec($ch); 
-    curl_close($ch); */ 
+    curl_close($ch); 
     
-    echo "$errors\n";
-    echo "$grade\n";
+    /*echo "$errors\n";
+    echo "$grade\n";  */
     
 ?> 
