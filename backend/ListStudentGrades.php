@@ -13,15 +13,22 @@ if (mysqli_connect_errno()) {
       $a = explode(" ",$contents);
       $uid = $a[0];
       $eid = $a[1];
-
+      $return = array();
       $a = mysqli_query($db,"SELECT grade FROM Grades WHERE (Grades.release='r' AND eid=$eid);");
       $exams = mysqli_fetch_array($a);
       if ($exams) {
             $result = mysqli_query($db,"SELECT grade,comments FROM Grades WHERE (uid='$uid' AND eid='$eid');");
-            $return = array();
+            
             while ($row = mysqli_fetch_assoc($result)) {
-                $return[] = $row;
+                $return['grade'] = $row['grade'];
+                $return['comments'] = $row['comments'];
             }
+/*
+            $comments = mysqli_query($db,"SELECT qid,comments FROM Students WHERE (uid='$uid' AND eid='$eid');");
+            while ($crow = mysqli_fetch_assoc($comments)) {
+                $return[] = $crow;
+            }
+*/
             mysqli_close($db);
             $je = (json_encode($return));
             echo $je;
