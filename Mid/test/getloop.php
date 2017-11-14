@@ -1,7 +1,8 @@
 <?php
     error_reporting(0);
    
-    $briansarray = explode('~',$argv[1]);   
+    $briansarray = urldecode($argv[1]);
+    $briansarray = explode('~',$briansarray);   
     
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");
