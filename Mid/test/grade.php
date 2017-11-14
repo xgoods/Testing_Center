@@ -22,9 +22,9 @@
            
         //get parameters from actual method call
         $step = explode("def ", $studentCode);
-        $methodname = explode("(", $step[1]); 
+        $method = explode("(", $step[1]); 
         $step = explode(":", $studentCode);
-        $step = explode("$methodname[0]", $step[1]);
+        $step = explode("$method[0]", $step[1]);
         preg_match('#\((.*?)\)#', $step[1], $parenth);
         $argues = explode(",", $parenth[1]);
         //***check for properly written func name 
