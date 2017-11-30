@@ -11,45 +11,65 @@ if (mysqli_connect_errno()) {
         $eid = $_POST['eid'];
         $qidarr = mysqli_query($db, "SELECT qid FROM QAA WHERE(eid = '$eid');");
         $return = array();
-        $aarr = array();
         $parr = array();
         $varr = array();
         $farr = array();
         $tarr = array();
+        $sarr = array();
+        $iarr = array();
+        $oarr = array();
         while ($rowqid = mysqli_fetch_assoc($qidarr)) {
             $qid = $rowqid['qid'];
         
 //           $qarr = mysqli_query($db,"SELECT points,ranswer FROM Bank WHERE(qid = '$qid')");
-            $ar = mysqli_query($db,"SELECT ranswer FROM Bank WHERE(qid = '$qid')");
-            $arr = mysqli_fetch_assoc($ar);
-            $aarr[] = $arr['ranswer'];
             $pr = mysqli_query($db,"SELECT points FROM Bank WHERE(qid = '$qid')");
             $par = mysqli_fetch_array($pr);
             $parr[] = $par['points'];
+            
             $vr = mysqli_query($db,"SELECT args FROM Bank WHERE(qid = '$qid')");
             $var = mysqli_fetch_array($vr);
             $varr[] = $var['args'];
+            
             $fr = mysqli_query($db,"SELECT fname FROM Bank WHERE(qid = '$qid')");
             $far = mysqli_fetch_array($fr);
             $farr[] = $far['fname'];
+            
             $tr = mysqli_query($db,"SELECT type FROM Bank WHERE(qid = '$qid')");
             $tar = mysqli_fetch_array($tr);
             $tarr[] = $tar['type'];
+            
+            $sr = mysqli_query($db,"SELECT answer FROM Answers WHERE(qid = '$qid')");
+            $sar = mysqli_fetch_array($sr);
+            $sarr[] = $sar['answer'];
+            
+            $ir = mysqli_query($db,"SELECT input FROM Cases WHERE(qid = '$qid')");
+            $iar = mysqli_fetch_array($ir);
+            $iarr[] = $iar['input'];
+            
+            $or = mysqli_query($db,"SELECT output FROM Cases WHERE(qid = '$qid')");
+            $oar = mysqli_fetch_array($or);
+            $oarr[] = $oar['output'];
+            
 //            while ($rowq = mysqli_fetch_assoc($qarr)) {
 //                $return[] = $rowq;
 //            }
         }
-        $ranswer = implode("~",$aarr);
         $points = implode("~",$parr);
         $args = implode("~",$varr);
         $fname = implode("~",$farr);
         $type = implode("~",$tarr);
+        $answer = implode("~",$sarr);
+        $input = implode("~",$iarr);
+        $output = implode("~",$oarr);
 
-        $return['tanswer'] = $ranswer;
         $return['points'] = $points;
         $return['args'] = $args;
         $return['fname'] = $fname;
         $return['type'] = $type;
+        $return['answer'] = $answer;
+        $return['input'] = $input;
+        $return['output'] = $output;
+        
         mysqli_close($db);
         $je = (json_encode($return));
         echo $je;
