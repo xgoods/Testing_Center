@@ -1,8 +1,4 @@
 <?php
-/*
-Accepts array in format
-{'examName'=>(variable for name of exam), 'questions'=>(imploded array of questions)}
-*/ 
 $db=mysqli_connect("sql2.njit.edu","ad379","admin","ad379");
 if (mysqli_connect_errno()) {
 	http_response_code(500);
@@ -10,20 +6,39 @@ if (mysqli_connect_errno()) {
 		"status" => -1,
 		"message" => mysqli_connect_error())));
 }
-//    $contents = file_get_contents('php://input');
-		$eid = mysqli_query($db, "SELECT COUNT(*) FROM Exams;");
-		$eid = mysqli_fetch_array($eid);
-		$neweid = $eid[0];
-		$name = $_POST['examName'];
-		$result = mysqli_query($db, "INSERT INTO Exams(eid, name) VALUES('$neweid','$name');");
-    $questionarr = explode(" ",$_POST['questions']);
+		$qid = mysqli_query($db, "SELECT COUNT(*) FROM Bank;");
+		$qid = mysqli_fetch_array($qid);
+		$question = $_POST['question'];
+		$type = $_POST['type'];
+		$newqid = $qid[0];
+		$fname = $_POST['functionName'];
+		$args = $_POST['args'];
+    $return = $_POST['returns'];
+    $difficulty = $_POST['difficulty'];
+    $points = $_POST['points'];
+    $var1 = $_POST['var1'];
+    $var2 = $_POST['var2'];
+    $var3 = $_POST['var3'];
+    $input = explode(" ",$_POST['input']);
+    $output = explode(" ",$_POST['output']);
+		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$difficulty','$points','$var1','$var2','$var3');");
+		
     $c = count($questionarr);
     for ($i = 0; $i < $c; $i++) {
-//      $qid = mysqli_query($db, "SELECT qid FROM BANK WHERE question = $question;");
       $qid = $questionarr[$i];
-			$result = mysqli_query($db, "INSERT INTO QAA(eid, qid) VALUES('$neweid','$qid');");
+			$result = mysqli_query($db, "INSERT INTO Cases(qid,input,output) VALUES('$newqid','$input[$i]','$output[$i]');");
     }
-		die(json_encode(array(
-			"status" => 1,
-			"message" => "Exam successfully created")));
+    if (!$result) {
+			$status = -1;
+			$message = mysqli_error($db);
+		}
+		else {
+			$status = 1;
+			$message = "Question successfully created";
+		}
+		mysqli_close($db);
+		$je = (json_encode(array(
+			"status" => $status,
+			"message" => $message)));
+    echo $je;
 ?>
