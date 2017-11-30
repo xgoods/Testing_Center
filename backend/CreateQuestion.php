@@ -19,8 +19,8 @@ if (mysqli_connect_errno()) {
     $var1 = $_POST['var1'];
     $var2 = $_POST['var2'];
     $var3 = $_POST['var3'];
-    $input = explode(" ",$_POST['input']);
-    $output = explode(" ",$_POST['output']);
+    $input = explode("~",$_POST['input']);
+    $output = explode("~",$_POST['output']);
 		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$difficulty','$points','$var1','$var2','$var3');");
 		
     $c = count($questionarr);
