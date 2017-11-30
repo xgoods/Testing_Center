@@ -14,14 +14,21 @@ if (mysqli_connect_errno()) {
 		$fname = $_POST['functionName'];
 		$args = $_POST['args'];
     $return = $_POST['returns'];
-    $ranswer = $_POST['ranswer'];
     $difficulty = $_POST['difficulty'];
     $points = $_POST['points'];
     $var1 = $_POST['var1'];
     $var2 = $_POST['var2'];
     $var3 = $_POST['var3'];
-		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$ranswer','$difficulty','$points','$var1','$var2','$var3');");
-		if (!$result) {
+    $input = explode(" ",$_POST['input']);
+    $output = explode(" ",$_POST['output']);
+		$result = mysqli_query($db, "INSERT INTO Bank VALUES ('$newqid','$question','$type','$fname','$args','$return','$difficulty','$points','$var1','$var2','$var3');");
+		
+    $c = count($questionarr);
+    for ($i = 0; $i < $c; $i++) {
+      $qid = $questionarr[$i];
+			$result = mysqli_query($db, "INSERT INTO Cases(qid,input,output) VALUES('$newqid','$input[$i]','$output[$i]');");
+    }
+    if (!$result) {
 			$status = -1;
 			$message = mysqli_error($db);
 		}
