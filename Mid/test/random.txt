@@ -1,9 +1,0 @@
-$directions = array("d","while loop","if","for loop");
-    $directions = implode('~',$directions);
-    $briansarray = array("student1","0","if","while","if","for");
-    $briansarray = implode('~',$briansarray);
-    
-    file_put_contents('testi.php',$dbexec);
-    $output = shell_exec("php testi.php $briansarray $directions");
-
-    echo "$output\n"; 
