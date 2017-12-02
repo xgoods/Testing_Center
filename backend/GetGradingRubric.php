@@ -44,11 +44,21 @@ if (mysqli_connect_errno()) {
             
             $ir = mysqli_query($db,"SELECT input FROM Cases WHERE(qid = '$qid')");
             $iar = mysqli_fetch_array($ir);
-            $iarr[] = $iar['input'];
+            $riar[] =  array();
+            while ($row = mysqli_fetch_assoc($iar)) {
+            $riar[] =  $row['input'];
+            }
+            $iiar = implode("@",$riar);
+            $iarr[] = $iiar;
             
             $or = mysqli_query($db,"SELECT output FROM Cases WHERE(qid = '$qid')");
             $oar = mysqli_fetch_array($or);
-            $oarr[] = $oar['output'];
+            $roar[] =  array();
+            while ($row = mysqli_fetch_assoc($oar)) {
+            $roar[] =  $row['output'];
+            }
+            $oiar = implode("@",$roar);
+            $oarr[] = $oiar;
             
 //            while ($rowq = mysqli_fetch_assoc($qarr)) {
 //                $return[] = $rowq;
@@ -67,7 +77,7 @@ if (mysqli_connect_errno()) {
         $return['fname'] = $fname;
         $return['type'] = $type;
         $return['answer'] = $answer;
-        $return['input'] = $input;
+        $return['testcase'] = $input;
         $return['output'] = $output;
         
         mysqli_close($db);
