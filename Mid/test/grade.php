@@ -107,8 +107,11 @@
             file_put_contents('test.py', $studenttest);
             $studentout = `python test.py`;
             $studentout = str_replace("\n","",$studentout);
+            if($studentout == null){
+                $studentout = "n/a";
+            }
             if("$studentout" == "$expectedoutput[$k]"){
-                $testout = "> $testcases[$k] -> Expected output: '$expectedoutput[$k]' | Result: '$studentout' -> correct";
+                $testout = "> $testcases[$k] -> Expected output: $expectedoutput[$k] | Result: $studentout -> correct";
                 array_push($testresults, $testout);
             } else{
                 $testout = "> $testcases[$k] -> Expected output: $expectedoutput[$k] | Result: $studentout -> incorrect";
@@ -150,13 +153,13 @@
          $i += 1; 
          
          //curl to db
-     /*  $ch = curl_init(); 
+         $ch = curl_init(); 
          curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
          curl_setopt($ch, CURLOPT_POST, 1);
          curl_setopt($ch, CURLOPT_POSTFIELDS, "$data");   
          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
          $gradecurl = curl_exec($ch); 
-         curl_close($ch); */
+         curl_close($ch); 
     }
     
 ?> 
