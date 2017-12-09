@@ -1,11 +1,11 @@
 <?php
 
-   //MOVE TEMPARR TO HERE
+    $temparr = explode('~',$_POST['studentinput']); 
 
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~ad379/GetGradingRubric.php");
     curl_setopt($db, CURLOPT_POST, 1);
-    curl_setopt($db, CURLOPT_POSTFIELDS, "eid=2");   
+    curl_setopt($db, CURLOPT_POSTFIELDS, "eid=$temparr[1]");   
     curl_setopt($db, CURLOPT_RETURNTRANSFER, 1);
     $dbexec = curl_exec($db); 
     curl_close($db);     
@@ -19,14 +19,13 @@
     $maxpoints = explode('~', $maxpoints);
     $directions = $obj->{'type'};
     $directions = explode('~',$directions);
-
-    echo "$dbexec\n";
+    $testcases = $obj->{'testcase'};
+    $testcases = explode('~',$testcases);
+    $expectedoutput = $obj->{'output'};
+    $expectedoutput = explode('~',$expectedoutput);    
     
     $grade = $i = $y = $k = 0;
     $x = 2;  
-    $temparr = explode('~',$_POST['studentinput']); 
-    $testcases = array("compare(1,2)","compare(3,2)","compare(1,4)","add(1,2,3)","posorneg(0)");
-    $expectedoutput = array("-1","true","-1","4","-1");
     $errors = array();
     $arr = array();
     $testresults = array();
@@ -143,21 +142,24 @@
                   
          $data = http_build_query($data);
          $data = urldecode($data); 
-        // echo "$data\n";
+         echo "$testimplode\n";
          //reset values
          $errors = array();
          $testresults = array();
          $argues = array();
          $i += 1; 
+         
+         //curl to db
+     /*  $ch = curl_init(); 
+         curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
+         curl_setopt($ch, CURLOPT_POST, 1);
+         curl_setopt($ch, CURLOPT_POSTFIELDS, "$data");   
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+         $gradecurl = curl_exec($ch); 
+         curl_close($ch); */
     }
 
-  /*  $ch = curl_init(); 
-    curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "$data");   
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $gradecurl = curl_exec($ch); 
-    curl_close($ch); */
+
     
     
 ?> 
