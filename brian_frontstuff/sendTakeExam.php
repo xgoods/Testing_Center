@@ -9,7 +9,7 @@
    	$an = array_merge($examArray, $_POST['count']);
     //echo "Exam Submitted.";
    	$finalArray = implode('~',$an);
-    $finalArray=urlencode($finalArray);
+    //$finalArray=urlencode($finalArray);
    	print_r($finalArray);
     $db = curl_init();
     curl_setopt($db, CURLOPT_URL, "https://web.njit.edu/~kl297/test.txt");  
@@ -28,11 +28,11 @@
    	
     
    	
-   	$url2 = "https://web.njit.edu/~kl297/grade.php";
+   	$url2 = "https://web.njit.edu/~kl297/web/grade.php";
    	$ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url2);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "array=$finalArray");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "studentinput=$finalArray");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $hello = curl_exec($ch);
     curl_close($ch);
