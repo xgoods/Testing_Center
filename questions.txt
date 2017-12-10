@@ -1,10 +1,10 @@
 easy:
-//1) Write an if/else function that takes 2 args and checks to see if a > b, returns true if it is,
+//1) Write an if/else function that takes 2 args and checks to see if a > b, returns 0 if it is,
 -1 if it isnt
 
 def compare(a,b):
     if a > b:
-        return "true"
+        return 0
     else:
         return -1
     
@@ -23,14 +23,14 @@ output = add(1,5,2)
 print(output)
 
 
-//3) write an if else program that takes one arg, checks if it is positive or negative, else returns -1
+//3) write an if else program that takes one arg, checks if it is positive or negative. returns 1 if positive, -1 if negative, else returns 0
 def posorneg(a):
     if a > 0:
-        return "positive"
+        return 1
     elif a < 0:
-        return "negative"
-    else:
         return -1
+    else:
+        return 0
 output = posorneg(-1)
 print(output)
 
