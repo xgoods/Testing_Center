@@ -64,7 +64,7 @@ hard:
 //1) operator
 
 def operation(op,a,b):
-    if op == "+":
+    if op == "*":
         return a+b
     if op == "-":
         return a-b
