@@ -50,7 +50,10 @@
         
         //***check for properly written func name 
         if(strpos($studentCode, "def $methodname[$i]") === false){
-            $one = "> (-$points points) Expected function name: '$methodname[$i]' | Given: '$method[0]' in answer #$n";
+            if($method[0] == null){
+              $method[0] = "n/a";
+            }
+            $one = "> (-$points points) <u>Expected function name:</u> $methodname[$i] | <u>Given:</u> $method[0]";
             $check = "yes";
             array_push($errors, $one);
         } else{
@@ -67,7 +70,7 @@
     	   } else{
                    $size = sizeof($argues);
                   }
-                   $two = "> (-$points points) Number of arguments expected: $argcount[$i] | Given: $size in #$n";
+                   $two = "> (-$points points) <u>Number of arguments expected:</u> $argcount[$i] | <u>Given:</u> $size";
                    array_push($errors, $two);
 
          }
@@ -76,21 +79,21 @@
           if(strpos($studentCode, "for")){
               $grade += $points;
           } else{
-              $five = "> (-$points points) For loop not included within answer #$n";
+              $five = "> (-$points points) For loop not included";
               array_push($errors, $five);
           }
       } elseif($directions[$i] == "whileLoop"){
           if(strpos($studentCode, "while")){
               $grade += $points;
           } else{
-              $five = "> (-$points points) While loop not included within answer #$n";
+              $five = "> (-$points points) While loop not included";
               array_push($errors, $five);
           }
       } elseif($directions[$i] == 'ifElse'){
           if(strpos($studentCode, 'else')){
               $grade += $points;
           } else{
-              $five = "> (-$points points) If/else not included within answer #$n";
+              $five = "> (-$points points) If/else not included";
               array_push($errors, $five);
           }
       } 
@@ -98,7 +101,7 @@
 	      $dubpoints = $points * 2;        
         while(strpos($testcases[$k], "$methodname[$i]") !== false){
             $temp = $testcases[$k];
-            
+      
             if($check == "yes"){
             $temp = str_replace($methodname[$i],$method[0],$testcases[$k]);
             }
@@ -111,10 +114,10 @@
                 $studentout = "n/a";
             }
             if("$studentout" == "$expectedoutput[$k]"){
-                $testout = "> $testcases[$k] -> Expected output: $expectedoutput[$k] | Result: $studentout -> correct";
+                $testout = "> $testcases[$k] -> <u>Expected Output:</u> $expectedoutput[$k] | <u>Result:</u> $studentout -> correct";
                 array_push($testresults, $testout);
             } else{
-                $testout = "> $testcases[$k] -> Expected output: $expectedoutput[$k] | Result: $studentout -> incorrect";
+                $testout = "> $testcases[$k] -> <u>Expected Output:</u> $expectedoutput[$k] | <u>Result:</u> $studentout -> incorrect";
                 array_push($testresults, $testout);
             }
             $k += 1; 
@@ -123,36 +126,38 @@
         $testimplode = implode('~', $testresults);
         exec('python test.py', $output, $return); 
         if($return){
-            $three = "> (-$dubpoints points) Unable to execute code in answer #$n";
+            $three = "> (-$dubpoints points) Unable to execute code";
             array_push($errors, $three);
-        } else if(strpos($testresults, "incorrect") === false){
+        } else if(strpos($testimplode, "incorrect") === false){
             $grade += $dubpoints;
         } else{
-            $four = "> (-$points points) Expected output: $expectedoutput[$i] | Given: $studentout #$n";
+            $four = "> (-$points points) Incorrect output";
             array_push($errors, $four);
             $grade += $points;
         } 
          //send data to backend per question
-         $studentinput = implode('~',$arr);
+         $studentcode = urlencode($arr[$i]);
          $errors = implode("~", $errors);
          $data = array('uid'=>$temparr[0],
                       'eid'=>$temparr[1],
                       'grade'=>$grade,
+			                'studentinput'=>$studentcode,
     		              'errors'=>$errors,
-    		              'studentinput'=>$studentinput,
                       'tcdata'=>$testimplode,
                       'questionid'=>$n);
-                  
+                
          $data = http_build_query($data);
          $data = urldecode($data); 
-         echo "$testimplode\n";
+         echo "$data\n";
+         
          //reset values
+         $grade = 0;
          $errors = array();
          $testresults = array();
          $argues = array();
          $i += 1; 
          
-         //curl to db
+         //curl to db           
          $ch = curl_init(); 
          curl_setopt($ch, CURLOPT_URL, "https://web.njit.edu/~ad379/SetStudentGrade.php");
          curl_setopt($ch, CURLOPT_POST, 1);
@@ -161,5 +166,6 @@
          $gradecurl = curl_exec($ch); 
          curl_close($ch); 
     }
+        
     
 ?> 
