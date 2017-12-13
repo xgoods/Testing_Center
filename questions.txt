@@ -11,12 +11,12 @@ def compare(a,b):
 compare = compare(2,3)
 print(compare)  
 
-//2) write a program that takes 3 args, a,b,N, and keeps adding N 
+//2) write a program that takes 3 args, a,b,N, and keeps subtracting N 
 in a while loop and returns a once a > b. if a already > b, return a
 
-def add(a,b,N):
+def subtract(a,b,N):
     while a <= b:
-        a = a + N
+        a = a - N
     return a
     
 output = add(1,5,2)
@@ -80,7 +80,11 @@ print(output)
 2) finds largest and smallest in an array and subtracts largest frmo smallest
 
 minimax = [3,2,1,4,5]
-def minmax(minmaxarray):
+
+
+
+
+minmax(minmaxarray):
     maxi = minimax[0]
     mini = minimax[0]
     for i in range(len(minimax)):
@@ -93,6 +97,17 @@ def minmax(minmaxarray):
             
 output = minmax(minimax)
 print(output)
+
+
+function sleep_in
+The parameter weekday is True if it is a weekday, and the parameter vacation is True if we are on vacation. We sleep in if it is not a weekday or we're on vacation. Return True if we sleep in.
+
+def sleep_in(weekday, vacation)
+
+sleep_in(False, False) → True
+sleep_in(True, False) → False
+sleep_in(False, True) → True
+
 
 
 3)
