@@ -15,7 +15,7 @@ print(compare)
 in a while loop and returns a once a > b. if a already > b, return a
 
 def subtract(a,b,N):
-    while a <= b:
+    while a >= b:
         a = a - N
     return a
     
